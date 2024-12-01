@@ -6,6 +6,13 @@
     font-family: 'Roboto Condensed', sans-serif;
   }
   
+  .hero img {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  
   .hero h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;

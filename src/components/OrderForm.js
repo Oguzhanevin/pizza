@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import OrderPizzaImage from '../Interfaces/OrderPizza.png';  
 import './OrderForm.css';
 
 const OrderForm = () => {
@@ -54,6 +55,7 @@ const OrderForm = () => {
 
   return (
     <div className="order-form">
+      <img src={OrderPizzaImage} alt="Order Pizza" className="order-pizza-image" />
       <h2>Sipariş Formu</h2>
       <form onSubmit={handleSubmit}>
         <label>
