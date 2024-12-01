@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import OrderPizzaImage from '../Interfaces/OrderPizza.png';  
 import './OrderForm.css';
+import OrderPizzaImage from "../../Interfaces/Iteration-1/OrderPizza.png"; // Resim yolu güncellendi
 
 const OrderForm = () => {
   const [formData, setFormData] = useState({
@@ -40,7 +40,7 @@ const OrderForm = () => {
     }
 
     axios
-      .post('https://reqres.in/api/pizza', formData) // Örnek bir API kullanılıyor
+      .post('https://reqres.in/api/pizza', formData)
       .then(() => {
         navigate('/confirmation');
       })
@@ -55,7 +55,7 @@ const OrderForm = () => {
 
   return (
     <div className="order-form">
-      <img src={OrderPizzaImage} alt="Order Pizza" className="order-pizza-image" />
+      <img src={OrderPizzaImage} alt="Order Pizza" style={{ width: "100%" }} />
       <h2>Sipariş Formu</h2>
       <form onSubmit={handleSubmit}>
         <label>
