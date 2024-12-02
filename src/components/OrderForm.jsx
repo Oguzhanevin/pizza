@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // useHistory yerine useNavigate
 import axios from "axios";
 import Sizing from "./Sizing";
-import Extra from "./Ekstra";
+import Supplementary from "./Supplementary";
 import Order from "./Order";
 import Information from "./Information";
 import "./Orderform.css";
