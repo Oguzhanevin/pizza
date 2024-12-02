@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import Sizing from "./Sizing";
+import Sizing from "./components/Sizing";
 import Extra from "./components/Extra";
 import Order from "./components/Order";
 import Information from "./components/Information";
