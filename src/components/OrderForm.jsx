@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // useHistory yerine useNavigate
 import axios from "axios";
 import Sizing from "./Sizing";
-import Supplementary from "./Supplementary";
 import Order from "./Order";
 import Information from "./Information";
+import Supplementary from "./Supplementary";
 import "./Orderform.css";
 
 const OrderForm = () => {
