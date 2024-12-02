@@ -1,45 +1,79 @@
-.order-form {
-    background-color: #FAF7F2; /* Bej */
-    padding: 20px;
-    margin: 20px auto;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .order-form img {
-    width: 100%;
-    margin-bottom: 20px;
-    border-radius: 10px;
-  }
-  
-  .order-form input, .order-form select, .order-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .order-form button {
-    background-color: #CE2829;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .order-form button:disabled {
-    background-color: #BEBEBE;
-    cursor: not-allowed;
-  }
-  
-  .error {
-    color: red;
-    font-size: 1rem;
-    margin-top: 10px;
-  }
-  
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: 100%;
+  background-color: #fafaf9;
+}
+
+.header {
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dc2626;
+  height: 16vh;
+}
+
+.header-inner {
+  text-align: center;
+  max-width: 600px;
+}
+
+.header-title {
+  font-size: 2rem;
+  color: #fff;
+  font-family: "Londrina", sans-serif;
+  margin-bottom: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.nav a {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #fff;
+}
+
+.content {
+  grid-row: 2;
+  margin: 0 auto;
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.title {
+  font-size: 1.375rem;
+  font-weight: bold;
+  color: #1f2937;
+  font-family: "Barlow", sans-serif;
+}
+
+.sub-info {
+  display: flex;
+  justify-content: space-between;
+  color: #6b7280;
+  font-family: "Barlow", sans-serif;
+}
+
+.description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #6b7280;
+  font-family: "Barlow", sans-serif;
+}
+
+.separator {
+  margin: 1.5rem 0;
+  border-top: 1px solid #d1d5db;
+}

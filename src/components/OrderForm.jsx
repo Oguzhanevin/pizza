@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Sizing from "./Sizing";
-import Extra from "./Extra";
-import Order from "./Order";
-import Information from "./Information";
-import "./OrderForm.css";
+import Extra from "./components/Extra";
+import Order from "./components/Order";
+import Information from "./components/Information";
+import "./Orderform.css";
 
 const OrderForm = () => {
   const history = useHistory();
