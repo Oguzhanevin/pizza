@@ -1,6 +1,6 @@
 import React from "react";
-import "./Home.css"; // CSS dosyasını güncelledim
 import { useHistory } from "react-router-dom";
+import "./Home.css";
 
 export default function Home() {
   const history = useHistory();
@@ -27,21 +27,21 @@ export default function Home() {
           </button>
         </div>
         <div className="home-banner">
-          <img src="src/Components/banner.png" alt="Banner" />
+          <img src="Assets/Iteration-1-assets/home-banner.png" alt="Banner" />
         </div>
       </div>
       <div className="home-menu">
         <div className="home-menu-items">
           <div className="home-menu-item">
-            <img src="src/img/kore.svg" alt="Kore" />
+            <img src="Assets/Iteration-2-aseets/icons/1.svg" />
             <h1>YENİ! Kore</h1>
           </div>
           <div className="home-menu-item">
-            <img src="src/img/pizza.svg" alt="Pizza" />
+            <img src="Assets/Iteration-2-aseets/icons/2.svg" alt="Pizza" />
             <h1>Pizza</h1>
           </div>
           <div className="home-menu-item">
-            <img src="src/img/burger.svg" alt="Burger" />
+            <img src="Assets/Iteration-2-aseets/icons/3.svg" alt="Burger" />
             <h1>Burger</h1>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function Home() {
       <div className="home-menu">
         <div className="home-menu-items">
           <div className="home-card">
-            <img src="src/adv-aseets/food-1.png" alt="Terminal Pizza" />
+            <img src="Assets/Iteration-2-aseets/pictures/food-1.png" alt="Terminal Pizza" />
             <h3>Terminal Pizza</h3>
             <div className="home-card-info">
               <p>4.9</p>
@@ -58,7 +58,7 @@ export default function Home() {
             </div>
           </div>
           <div className="home-card">
-            <img src="src/adv-aseets/food-2.png" alt="Position Absolute Pizza" />
+            <img src="Assets/Iteration-2-aseets/pictures/food-2.png" alt="Position Absolute Pizza" />
             <h3>Position Absolute Pizza</h3>
             <div className="home-card-info">
               <p>4.9</p>
@@ -67,7 +67,7 @@ export default function Home() {
             </div>
           </div>
           <div className="home-card">
-            <img src="src/adv-aseets/food-3.png" alt="useEffect Burger" />
+            <img src="Assets/Iteration-2-aseets/pictures/food-3.png" alt="useEffect Burger" />
             <h3>useEffect Burger</h3>
             <div className="home-card-info">
               <p>4.9</p>

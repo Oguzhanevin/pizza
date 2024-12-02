@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // useHistory yerine useNavigate
 import axios from "axios";
-import Sizing from "./Sizing";  // Buradaki yol doğru olmalı
+import Sizing from "./Sizing";
 import Extra from "./Extra";
 import Order from "./Order";
 import Information from "./Information";
 import "./Orderform.css";
+
 const OrderForm = () => {
-  const history = useHistory();
+  const navigate = useNavigate(); // useHistory yerine useNavigate
 
   const [textName, setTextName] = useState("");
   const [totalPrice, setTotalPrice] = useState(85.5);
@@ -18,16 +19,13 @@ const OrderForm = () => {
   const [size, setSize] = useState("sm");
 
   const [formError, setFormError] = useState({
-    pizzaSize: "",
-    pizzaPastry: "",
-    addItems: [],
     fullName: "",
-    orderQuantity: "",
+    orderNote: "",
     total: "",
   });
 
   const mainPage = () => {
-    history.push("/");
+    navigate("/"); // history.push yerine navigate kullanılıyor
   };
 
   const textValue = (event) => {
@@ -85,6 +83,14 @@ const OrderForm = () => {
       return;
     }
 
+    if (!orderNote) {
+      setFormError((prev) => ({
+        ...prev,
+        orderNote: "Sipariş notunu girin.",
+      }));
+      return;
+    }
+
     const orderData = {
       textName,
       totalPrice,
@@ -96,16 +102,17 @@ const OrderForm = () => {
     };
 
     try {
-      // Simulate API request
+      // Simulated API request - change this with actual API endpoint
       const response = await axios.post(
         "https://your-api-endpoint.com/order",
         orderData
       );
       console.log("API Response:", response.data);
 
-      // Redirect or update UI after successful submission
-      setFormError({});
-      alert("Sipariş başarıyla gönderildi!");
+      // Redirect to confirmation page with order message
+      navigate("/order-confirmation", {
+        state: { orderMessage: "Sipariş başarıyla alındı!" },
+      });
     } catch (error) {
       console.error("Sipariş gönderilemedi", error);
       setFormError((prev) => ({
