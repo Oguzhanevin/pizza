@@ -1,18 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import OrderForm from './components/OrderForm';
-import OrderConfirmation from './components/OrderConfirmation';
+import "./App.css";
+import Home from "./Components/Home";
+import { Route, Link } from "react-router-dom";
+import OrderForm from "./Components/OrderForm";
+import OrderReceived from "./Components/OrderReceived";
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
+  const [sentData, setSentData] = useState(null);
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/order" element={<OrderForm />} />
-        <Route path="/confirmation" element={<OrderConfirmation />} />
-      </Routes>
-    </Router>
+    <>
+      <Route exact path="/" component={Home} />
+      <Route path="/pizza">
+        <OrderForm setSentData={setSentData} />
+      </Route>
+      <Route path="/summary">
+        <OrderReceived sentData={sentData} />
+      </Route>
+    </>
   );
 }
 
