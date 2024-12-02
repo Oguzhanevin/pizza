@@ -1,109 +1,183 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import './OrderForm.css';
-import OrderPizzaImage from "../../Interfaces/Iteration-1/OrderPizza.png"; // Resim yolu güncellendi
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import Sizing from "./Sizing";
+import Extra from "./Extra";
+import Order from "./Order";
+import Information from "./Information";
+import "./OrderForm.css";
 
 const OrderForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    size: '',
-    toppings: [],
-    notes: '',
-  });
-  const [error, setError] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
+  const history = useHistory();
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === 'checkbox') {
-      setFormData((prevData) => ({
-        ...prevData,
-        toppings: checked
-          ? [...prevData.toppings, value]
-          : prevData.toppings.filter((topping) => topping !== value),
-      }));
-    } else {
-      setFormData({ ...formData, [name]: value });
+  const [textName, setTextName] = useState("");
+  const [totalPrice, setTotalPrice] = useState(85.5);
+  const [orderNote, setOrderNote] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [tickness, setTickness] = useState("Normal");
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [size, setSize] = useState("sm");
+
+  const [formError, setFormError] = useState({
+    pizzaSize: "",
+    pizzaPastry: "",
+    addItems: [],
+    fullName: "",
+    orderQuantity: "",
+    total: "",
+  });
+
+  const mainPage = () => {
+    history.push("/");
+  };
+
+  const textValue = (event) => {
+    setTextName(event.target.value);
+  };
+
+  const orderNoteChange = (event) => {
+    setOrderNote(event.target.value);
+  };
+
+  const countUp = () => {
+    setQuantity((prev) => prev + 1);
+    setTotalPrice((prev) => prev + 85.5);
+  };
+
+  const countDown = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+      setTotalPrice((prev) => prev - 85.5);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const handleRadioChange = (event) => {
+    setSize(event.target.value);
+  };
 
-    if (!formData.name || formData.name.length < 3 || !formData.size) {
-      setError('Lütfen tüm alanları doldurun!');
-      setIsSubmitting(false);
+  const optionSelection = (event) => {
+    setTickness(event.target.value);
+  };
+
+  const handleItemSelection = (event) => {
+    const item = event.target.name;
+    const isChecked = event.target.checked;
+
+    if (isChecked) {
+      if (selectedItems.length < 10) {
+        setSelectedItems((prev) => [...prev, item]);
+      } else {
+        alert("10'dan fazla malzeme seçemezsiniz!");
+      }
+    } else {
+      setSelectedItems((prev) => prev.filter((i) => i !== item));
+    }
+  };
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
+    // Form validation
+    if (!textName || textName.length < 3) {
+      setFormError((prev) => ({
+        ...prev,
+        fullName: "Lütfen geçerli bir isim girin.",
+      }));
       return;
     }
 
-    axios
-      .post('https://reqres.in/api/pizza', formData)
-      .then(() => {
-        navigate('/confirmation');
-      })
-      .catch((err) => {
-        console.error(err);
-        setError('Sipariş gönderilemedi. Lütfen tekrar deneyin.');
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+    const orderData = {
+      textName,
+      totalPrice,
+      orderNote,
+      quantity,
+      tickness,
+      selectedItems,
+      size,
+    };
+
+    try {
+      // Simulate API request
+      const response = await axios.post(
+        "https://your-api-endpoint.com/order",
+        orderData
+      );
+      console.log("API Response:", response.data);
+
+      // Redirect or update UI after successful submission
+      setFormError({});
+      alert("Sipariş başarıyla gönderildi!");
+    } catch (error) {
+      console.error("Sipariş gönderilemedi", error);
+      setFormError((prev) => ({
+        ...prev,
+        total: "Sipariş gönderilemedi. Lütfen tekrar deneyin.",
+      }));
+    }
   };
 
   return (
-    <div className="order-form">
-      <img src={OrderPizzaImage} alt="Order Pizza" style={{ width: "100%" }} />
-      <h2>Sipariş Formu</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Adınız:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Pizza Boyutu:
-          <select name="size" value={formData.size} onChange={handleChange}>
-            <option value="">Boyut Seç</option>
-            <option value="small">Küçük</option>
-            <option value="medium">Orta</option>
-            <option value="large">Büyük</option>
-          </select>
-        </label>
-        <label>Malzemeler:</label>
-        <div>
-          {['Peynir', 'Mantar', 'Zeytin', 'Biber'].map((ingredient) => (
-            <label key={ingredient}>
-              <input
-                type="checkbox"
-                value={ingredient}
-                checked={formData.toppings.includes(ingredient)}
-                onChange={handleChange}
-              />
-              {ingredient}
-            </label>
-          ))}
+    <form id="pizza-form" onSubmit={submitHandler}>
+      <div className="container">
+        <div className="header">
+          <div className="header-inner">
+            <h1 className="header-title">Teknolojik Yemekler</h1>
+            <nav className="nav">
+              <a onClick={mainPage}>Anasayfa</a>
+              <p>-</p>
+              <a>Sipariş Oluştur</a>
+            </nav>
+          </div>
         </div>
-        <label>
-          Özel Notlar:
-          <textarea
-            name="notes"
-            value={formData.notes}
-            onChange={handleChange}
+        <div className="content">
+          <div className="title">{totalPrice.toFixed(2)}₺</div>
+          <div className="sub-info">
+            <p>4.9</p>
+            <p>(200)</p>
+          </div>
+          <p className="description">
+            Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı
+            pizza tam sana göre.
+          </p>
+          <Sizing
+            size={size}
+            handleRadioChange={handleRadioChange}
+            tickness={tickness}
+            optionSelection={optionSelection}
           />
-        </label>
-        {error && <p className="error">{error}</p>}
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Gönderiliyor...' : 'Sipariş Ver'}
-        </button>
-      </form>
-    </div>
+          <Extra
+            handleItemSelection={handleItemSelection}
+            formError={formError}
+            selectedItems={selectedItems}
+          />
+          <Information
+            formError={formError}
+            textValue={textValue}
+            textName={textName}
+            orderNoteChange={orderNoteChange}
+            orderNote={orderNote}
+            sentData={{
+              textName,
+              totalPrice,
+              orderNote,
+              quantity,
+              tickness,
+              selectedItems,
+              size,
+            }}
+          />
+          {formError.total && <p className="error">{formError.total}</p>}
+          <hr className="separator" />
+          <Order
+            totalPrice={totalPrice}
+            countUp={countUp}
+            countDown={countDown}
+            quantity={quantity}
+            submitHandler={submitHandler}
+          />
+        </div>
+      </div>
+    </form>
   );
 };
 
