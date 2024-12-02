@@ -4,7 +4,7 @@ import axios from "axios";
 import Sizing from "./Sizing";
 import Order from "./Order";
 import Information from "./Information";
-import Supplementary from "./Supplementary";
+import Extra from "./Extra";
 import "./Orderform.css";
 
 const OrderForm = () => {
