@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  .home-header {
+    background-color: #dc2626;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .home-title {
+    font-size: 34px;
+    font-weight: bold;
+    margin-top: 45px;
+    margin-bottom: 20px;
+  }
+  
+  .home-subtitle {
+    font-size: 26px;
+    color: #facc15;
+  }
+  
+  .home-main {
+    font-size: 60px;
+    font-weight: 100;
+    line-height: 75px;
+    text-transform: uppercase;
+  }
+  
+  .home-button {
+    background-color: #facc15;
+    padding: 10px 30px;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    color: #1c1917;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    color: #292524;
+  }
+  
+  .home-banner img {
+    width: 70%;
+    margin: 20px auto;
+  }
+  
+  .home-menu {
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    color: #1c1917;
+  }
+  
+  .home-menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 75%;
+    justify-content: space-between;
+  }
+  
+  .home-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .home-card {
+    width: 32%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .home-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .home-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .home-card h3 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .home-card-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #737373;
+  }
+  
+  .home-footer {
+    background-color: #000;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .home-footer-content {
+    margin: 0 auto;
+    width: 65%;
+  }
+  
+  .home-footer-content h1 {
+    font-size: 32px;
+  }
+  
+  .home-footer-social img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+  }
+  
