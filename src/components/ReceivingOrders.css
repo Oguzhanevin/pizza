@@ -1,0 +1,103 @@
+/* Genel kapsayıcı */
+.receiving-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #dc2626;
+    margin: 0;
+  }
+  
+  .receiving-content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dc2626;
+  }
+  
+  /* Başlık bölümü */
+  .receiving-header {
+    text-align: center;
+  }
+  
+  .receiving-title {
+    font-size: 50px;
+    font-family: "Londrina", sans-serif;
+    color: #fff;
+  }
+  
+  .order-status-section {
+    margin-top: 20px;
+  }
+  
+  .order-subtitle {
+    font-size: 35px;
+    font-family: "Satisfy", cursive;
+    color: #ffcc00;
+    margin: 0;
+  }
+  
+  .order-confirmation {
+    font-size: 90px;
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 2px;
+    color: #fff;
+    margin: 0;
+  }
+  
+  /* Pizza detayları */
+  .pizza-details-section {
+    text-align: center;
+  }
+  
+  .pizza-name {
+    font-size: 29px;
+    font-family: "Barlow", sans-serif;
+    color: #fff;
+  }
+  
+  .pizza-info p {
+    font-size: 18px;
+    font-family: "Barlow", sans-serif;
+    color: #d1d5db;
+    margin: 5px 0;
+  }
+  
+  .pizza-info .info-value {
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Sipariş özeti */
+  .order-summary-section {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    text-align: center;
+  }
+  
+  .order-summary-section h3 {
+    font-size: 20px;
+    font-family: "Barlow", sans-serif;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  
+  .summary-details p {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    font-size: 18px;
+    color: #fff;
+  }
+  
+  .summary-value {
+    font-weight: bold;
+  }
+  

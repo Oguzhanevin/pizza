@@ -1,8 +1,8 @@
 import "./App.css";
-import Home from "./Components/Home";
+import Home from "./components/Home";
 import { Route, Link } from "react-router-dom";
-import OrderForm from "./Components/OrderForm";
-import OrderReceived from "./Components/OrderReceived";
+import OrderForm from "./components/OrderForm";
+import OrderReceived from "./components/ReceivingOrders";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
