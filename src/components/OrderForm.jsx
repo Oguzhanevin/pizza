@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import Sizing from "./components/Sizing";
-import Extra from "./components/Extra";
-import Order from "./components/Order";
-import Information from "./components/Information";
+import Sizing from "./Sizing";  // Buradaki yol doğru olmalı
+import Extra from "./Extra";
+import Order from "./Order";
+import Information from "./Information";
 import "./Orderform.css";
-
 const OrderForm = () => {
   const history = useHistory();
 
