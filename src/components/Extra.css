@@ -1,0 +1,51 @@
+/* Başlık ve açıklama stili */
+.extra-header {
+    color: #27272a;
+    margin-top: 20px;
+    font-family: 'Barlow', sans-serif;
+  }
+  
+  .extra-header h3 {
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  
+  .extra-header p {
+    font-size: 13px;
+    color: #737373;
+  }
+  
+  .extra-header .error {
+    color: #dc2626; /* Hata mesajları için kırmızı renk */
+  }
+  
+  /* Ekstra malzeme seçenekleri */
+  .extra-options {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Düzgün dağılım için grid */
+    gap: 10px;
+  }
+  
+  .option {
+    font-family: 'Barlow', sans-serif;
+    color: #737373;
+  }
+  
+  .option input[type="checkbox"] {
+    accent-color: #2563eb; /* Checkbox işaretleme rengi */
+  }
+  
+  /* Responsive düzen */
+  @media (max-width: 768px) {
+    .extra-options {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Orta ekranlar için düzenleme */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .extra-options {
+      grid-template-columns: 1fr; /* Küçük ekranlarda her öğe tam genişlikte */
+    }
+  }
+  
