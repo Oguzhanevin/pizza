@@ -8,6 +8,7 @@ import "./OrderForm.css";
 import { useHistory } from "react-router-dom";
 import Order from "./Order";
 import Extra from "./Extra";
+import Information from "./Information";
 
 const OrderForm = ({ setSentData }) => {
   const history = useHistory();
@@ -149,7 +150,7 @@ const OrderForm = ({ setSentData }) => {
           </div>
           <Sizing size={size} handleRadioChange={handleRadioChange} tickness={tickness} optionSelection={optionSelection} />
           <Extra checkSelection={checkSelection} itemsArr={itemsArr} />
-          <Info textValue={textValue} textName={textName} orderNoteChange={orderNoteChange} orderNote={orderNote} />
+          <Information textValue={textValue} textName={textName} orderNoteChange={orderNoteChange} orderNote={orderNote} />
           <Order
             totalPrice={totalPrice}
             tickPrice={tickPrice}
