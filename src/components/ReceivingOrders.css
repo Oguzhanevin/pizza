@@ -1,89 +1,103 @@
-.receiving-orders {
-  background-color: #b91c1c;
-  width: 100vw;
-  height: 100vh;
+/* Genel kapsayıcı */
+.receiving-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  color: white;
-  font-family: Arial, sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-color: #dc2626;
+  margin: 0;
 }
 
-.orders-container {
+.receiving-content {
   width: 50%;
-  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  background-color: #dc2626;
 }
 
-.header h1 {
-  font-family: "Londrina Solid", cursive;
+/* Başlık bölümü */
+.receiving-header {
+  text-align: center;
+}
+
+.receiving-title {
   font-size: 50px;
-  text-align: center;
+  font-family: "Londrina", sans-serif;
+  color: #fff;
 }
 
-.order-status {
-  text-align: center;
+.order-status-section {
+  margin-top: 20px;
 }
 
-.order-tagline {
-  font-family: "Satisfy", cursive;
+.order-subtitle {
   font-size: 35px;
-  color: #fbbf24;
-  margin-bottom: -20px;
+  font-family: "Satisfy", cursive;
+  color: #ffcc00;
+  margin: 0;
 }
 
-.order-title {
-  font-family: "Bebas Neue", cursive;
+.order-confirmation {
   font-size: 90px;
-  letter-spacing: 0.1em;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 2px;
+  color: #fff;
+  margin: 0;
 }
 
-.order-summary h2 {
-  font-family: "Barlow", sans-serif;
-  font-size: 29px;
+/* Pizza detayları */
+.pizza-details-section {
   text-align: center;
 }
 
-.details {
-  margin: 20px auto;
-  text-align: left;
-  width: 60%;
+.pizza-name {
+  font-size: 29px;
+  font-family: "Barlow", sans-serif;
+  color: #fff;
 }
 
-.details p {
+.pizza-info p {
+  font-size: 18px;
+  font-family: "Barlow", sans-serif;
+  color: #d1d5db;
   margin: 5px 0;
 }
 
-.details span {
-  color: #ffffff;
-}
-
-.order-total {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 10px;
-}
-
-.summary-box {
-  width: 35%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: left;
-}
-
-.summary-box h3 {
-  font-family: "Barlow", sans-serif;
+.pizza-info .info-value {
+  text-transform: uppercase;
+  color: #fff;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
-.cost-detail {
+/* Sipariş özeti */
+.order-summary-section {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  text-align: center;
+}
+
+.order-summary-section h3 {
+  font-size: 20px;
+  font-family: "Barlow", sans-serif;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.summary-details p {
   display: flex;
   justify-content: space-between;
   margin: 5px 0;
+  font-size: 18px;
+  color: #fff;
 }
+
+.summary-value {
+  font-weight: bold;
+}
+
