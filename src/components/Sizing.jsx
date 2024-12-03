@@ -69,5 +69,3 @@ function Sizing({ size, handleRadioChange, tickness, optionSelection }) {
 }
 
 export default Sizing;
-
-

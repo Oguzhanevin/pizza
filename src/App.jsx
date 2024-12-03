@@ -1,26 +1,31 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./components/Home";
-import OrderForm from "./components/OrderForm";
-import Information from "./components/Information";
+import React, { useState } from 'react';
+import Sizing from './Sizing'; // Sizing bileşenini import et
 
 function App() {
-  const [sentData, setSentData] = useState(null);
+  const [size, setSize] = useState(''); // Boyut state
+  const [tickness, setTickness] = useState(''); // Hamur kalınlığı state
+
+  // Boyut seçimi için handler
+  const handleRadioChange = (e) => {
+    setSize(e.target.value); // Seçilen boyutu state'e kaydet
+  };
+
+  // Hamur kalınlığı seçimi için handler
+  const optionSelection = (e) => {
+    setTickness(e.target.value); // Seçilen hamur kalınlığını state'e kaydet
+  };
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/pizza">
-          <OrderForm setSentData={setSentData} />
-        </Route>
-        <Route path="/information">
-          <Information sentData={sentData} />
-        </Route>
-      </Switch>
-    </Router>
+    <div>
+      <Sizing
+        size={size}
+        tickness={tickness}
+        handleRadioChange={handleRadioChange}
+        optionSelection={optionSelection}
+      />
+      <p>Seçilen Boyut: {size}</p>
+      <p>Seçilen Hamur Kalınlığı: {tickness}</p>
+    </div>
   );
 }
 
