@@ -1,42 +1,20 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"; // useHistory'i import ettik
 import axios from "axios";
-import Sizing from "./Sizing";  
-import Extra from "./Extra";
-import Order from "./Order";
-import Information from "./Information";
-import "./Orderform.css";
+import "./OrderForm.css";
 
-const OrderForm = () => {
-  const history = useHistory();
-
+const OrderForm = ({ setSentData }) => {
+  const history = useHistory(); // useHistory hook'u ile history objesini alıyoruz
   const [textName, setTextName] = useState("");
   const [orderNote, setOrderNote] = useState("");
-  const [totalPrice, setTotalPrice] = useState(20);  
+  const [totalPrice, setTotalPrice] = useState(20);
   const [formError, setFormError] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
-  const [tickness, setTickness] = useState("-");
   const [size, setSize] = useState("-");
+  const [tickness, setTickness] = useState("-");
   const [quantity, setQuantity] = useState(1);
 
-  const handleItemSelection = (event) => {
-    const { checked, name } = event.target;
-    if (checked) {
-      setSelectedItems((prev) => [...prev, name]);
-    } else {
-      setSelectedItems((prev) => prev.filter((item) => item !== name));
-    }
-  };
-
-  const countUp = () => {
-    setQuantity((prev) => prev + 1);
-  };
-
-  const countDown = () => {
-    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
-  };
-
-  const submitHandler = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!textName) {
@@ -44,45 +22,29 @@ const OrderForm = () => {
       return;
     }
 
-    try {
-      const response = await axios.post("/api/order", {
-        textName,
-        orderNote,
-        totalPrice,
-        selectedItems,
-        tickness,
-        size,
-        quantity,
-      });
+    // Burada sipariş verileri API'ye gönderilebilir, ancak şimdilik sadece veriyi state'e kaydediyoruz
+    const orderData = {
+      textName,
+      orderNote,
+      totalPrice,
+      selectedItems,
+      size,
+      tickness,
+      quantity,
+    };
 
-      history.push("/thank-you"); 
-    } catch (error) {
-      setFormError({
-        ...formError,
-        total: "Sipariş gönderilemedi. Lütfen tekrar deneyin.",
-      });
-    }
+    // Veriyi App.js'ye gönder
+    setSentData(orderData);
+
+    // Sipariş tamamlandıktan sonra ReceivingOrders sayfasına yönlendirme yapıyoruz
+    history.push("/receiving-orders"); // Yönlendirme adresini /receiving-orders olarak değiştirdik
   };
 
   return (
-    <div className="orderform-container">
-      <form onSubmit={submitHandler} className="orderform">
-        <Sizing setSize={setSize} setTickness={setTickness} size={size} tickness={tickness} />
-        <Extra 
-          handleItemSelection={handleItemSelection} 
-          selectedItems={selectedItems} 
-          formError={formError} 
-        />
-        <Information sentData={{ textName, orderNote, totalPrice, tickness, selectedItems, size, quantity }} formError={formError} />
-        <Order 
-          totalPrice={totalPrice} 
-          countUp={countUp} 
-          countDown={countDown} 
-          quantity={quantity} 
-          submitHandler={submitHandler}
-        />
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      {/* Diğer form elemanları */}
+      <button type="submit">Sipariş Ver</button>
+    </form>
   );
 };
 
