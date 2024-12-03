@@ -3,43 +3,48 @@ import "./ReceivingOrders.css";
 
 const ReceivingOrders = ({ sentData }) => {
   return (
-    <div className="receiving-container">
-      <div className="receiving-content">
-        <div className="receiving-header">
-          <h1 className="receiving-title">Teknolojik Yemekler</h1>
-          <div className="order-status-section">
-            <p className="order-subtitle">lezzetin yolda</p>
-            <h2 className="order-confirmation">SİPARİŞ Alındı</h2>
-          </div>
+    <div className="receiving-orders">
+      <div className="orders-container">
+        <header className="header">
+          <h1>Teknolojik Yemekler</h1>
+        </header>
+        <div className="order-status">
+          <p className="order-tagline">lezzetin yolda</p>
+          <h1 className="order-title">SİPARİŞ Alındı</h1>
         </div>
-        <div className="pizza-details-section">
-          <h3 className="pizza-name">Position Absolute Acı Pizza</h3>
-          <div className="pizza-info">
+        <div className="order-summary">
+          <h2>Position Absolute Acı Pizza</h2>
+          <div className="details">
             <p>
-              <span>Boyut:</span> <span className="info-value">{sentData.pizzaSize}</span>
+              Boyut: <span>{sentData.pizzaSize.toUpperCase()}</span>
             </p>
             <p>
-              <span>Hamur:</span> <span className="info-value">{sentData.pizzaDough}</span>
+              Hamur: <span>{sentData.pizzaDough.toUpperCase()}</span>
             </p>
             <p>
-              <span>Ek Malzemeler:</span>
-              <span className="info-value">
-                {sentData.addItems.length > 0
-                  ? sentData.addItems.join(", ")
-                  : "Ek malzeme seçilmedi"}
+              Ek Malzemeler:
+              <span>
+                {sentData.addItems.map((item, index) => (
+                  <span key={index}>
+                    {item}
+                    {index < sentData.addItems.length - 1 ? ", " : ""}
+                  </span>
+                ))}
               </span>
             </p>
           </div>
         </div>
-        <div className="order-summary-section">
-          <h3>Sipariş Toplamı</h3>
-          <div className="summary-details">
-            <p>
-              <span>Seçimler:</span> <span className="summary-value">{sentData.addItems.length * 5}₺</span>
-            </p>
-            <p>
-              <span>Toplam:</span> <span className="summary-value">{sentData.totalBasket}₺</span>
-            </p>
+        <div className="order-total">
+          <div className="summary-box">
+            <h3>Sipariş Toplamı</h3>
+            <div className="cost-detail">
+              <p>Seçimler</p>
+              <span>{sentData.addItems.length * 5}₺</span>
+            </div>
+            <div className="cost-detail">
+              <p>Toplam</p>
+              <span>{sentData.totalBasket}₺</span>
+            </div>
           </div>
         </div>
       </div>

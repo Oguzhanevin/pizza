@@ -1,21 +1,20 @@
-import React from "react";
-import "./Order.css"; // CSS dosyasını bağladık
+import React, { useEffect } from "react";
+import "./Order.css";
 
 function Order({
-  totalPrice = 0,
-  tickPrice = 0,
-  additionalPrice = 0,
+  totalPrice,
+  tickPrice,
+  additionalPrice,
   countUp,
   countDown,
-  quantity = 1,
+  quantity,
   submitHandler,
 }) {
-  // Toplam fiyatı hesaplamak için ayrı bir değişken
-  const finalPrice = (totalPrice + tickPrice + additionalPrice) * quantity;
+  useEffect(() => {}, []);
 
   return (
     <div className="order-container">
-      <div className="quantity-controls">
+      <div className="quantity-control">
         <button type="button" onClick={countDown} className="quantity-button">
           -
         </button>
@@ -24,24 +23,19 @@ function Order({
           +
         </button>
       </div>
-      <div className="order-summary">
-        <div className="order-details">
+      <div className="order-details">
+        <div className="summary">
           <h3 className="summary-title">Sipariş Toplamı</h3>
-          <div className="summary-row">
-            <h4 className="summary-label">Seçimler</h4>
-            <p className="summary-value">{additionalPrice.toFixed(2)}₺</p>
+          <div className="summary-item">
+            <h4>Seçimler</h4>
+            <p>{additionalPrice}₺</p>
           </div>
-          <div className="summary-row">
-            <h4 className="summary-label">Toplam</h4>
-            <p className="summary-value">{finalPrice.toFixed(2)}₺</p>
+          <div className="summary-item">
+            <h4>Toplam</h4>
+            <p>{(totalPrice + tickPrice + additionalPrice) * quantity}₺</p>
           </div>
         </div>
-        <button
-          type="button"
-          onClick={submitHandler}
-          id="order-button"
-          className="order-submit-button"
-        >
+        <button onClick={submitHandler} id="order-button" className="order-button">
           SİPARİŞ VER
         </button>
       </div>

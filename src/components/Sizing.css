@@ -1,74 +1,51 @@
-/* Genel Stiller */
-body {
-    font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
-    background-color: #fafafa;
-    color: #333;
-  }
-  
-  /* Sizing Container */
-  .sizing-container {
-    display: flex;
-    flex-direction: row;
-    margin-top: 20px;
-    justify-content: space-between;
-  }
-  
-  /* Sizing Left */
-  .sizing-left {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .sizing-title {
-    font-size: 18px;
-    font-weight: 600;
-    font-family: "Barlow", sans-serif;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .required {
-    color: #dc2626;
-  }
-  
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: 13px;
-    color: #4b5563;
-  }
-  
-  .radio-group label {
-    font-weight: 500;
-    font-family: "Barlow", sans-serif;
-  }
-  
-  /* Sizing Right */
-  .sizing-right {
-    width: 50%;
-  }
-  
-  .tickness-select {
-    background-color: #e5e7eb;
-    color: #4b5563;
-    font-size: 13px;
-    padding: 5px;
-    font-family: "Barlow", sans-serif;
-  }
-  
-  .tickness-select:focus {
-    outline: none;
-    border-color: #dc2626;
-  }
-  
-  /* Hover ve Focus Stilleri */
-  .sizing-left input[type="radio"]:checked {
-    accent-color: #2563eb; /* Seçilen radio buton rengini mavi yapar */
-  }
-  
-  .sizing-right select:focus {
-    border-color: #dc2626;
-  }
-  
+.sizing-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.size-selection,
+.dough-selection {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.size-selection h3,
+.dough-selection h3 {
+  font-family: "Barlow", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 10px;
+}
+
+.required {
+  color: #e53e3e;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Barlow", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #718096;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dough-dropdown {
+  background-color: #e2e8f0;
+  color: #2d3748;
+  font-family: "Barlow", sans-serif;
+  font-size: 13px;
+  padding: 5px 10px;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+}

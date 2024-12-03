@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import "./Home.css";
+import { useHistory } from "react-router-dom";
 
-export default function Home() {
+const Home = () => {
   const history = useHistory();
 
   const handleClick = () => {
@@ -10,81 +10,64 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div className="home-header">
-        <div>
-          <h1 className="home-title">Teknolojik Yemekler</h1>
-        </div>
-        <div>
-          <p className="home-subtitle">fırsatı kaçırma</p>
-          <div className="home-main">
-            KOD ACIKTIRIR
-            <br />
-            Pizza, DOYURUR
-          </div>
-          <button onClick={handleClick} className="home-button">
+    <div className="home-container">
+      {/* Header */}
+      <header className="header">
+        <h1 className="header-title">Teknolojik Yemekler</h1>
+        <div className="header-subtitle">
+          <p className="highlight-text">fırsatı kaçırma</p>
+          <h2>KOD ACIKTIRIR<br />Pizza, DOYURUR</h2>
+          <button className="order-button" onClick={handleClick}>
             ACIKTIM
           </button>
         </div>
-        <div className="home-banner">
-          <img src="Assets/Iteration-1-assets/home-banner.png" alt="Banner" />
-        </div>
+      </header>
+
+      {/* Image Banner */}
+      <div className="banner-container">
+        <img src="src/Components/banner.png" alt="Banner" />
       </div>
-      <div className="home-menu">
-        <div className="home-menu-items">
-          <div className="home-menu-item">
-            <img src="Assets/Iteration-2-aseets/icons/1.svg" />
-            <h1>YENİ! Kore</h1>
+
+      {/* Category Section */}
+      <section className="categories">
+        {[
+          { src: "src/img/kore.svg", label: "YENİ! Kore" },
+          { src: "src/img/pizza.svg", label: "Pizza" },
+          { src: "src/img/burger.svg", label: "Burger" },
+          { src: "src/img/kizartma.svg", label: "Kızartmalar" },
+          { src: "src/img/fast-food.svg", label: "Fast food" },
+          { src: "src/img/icecek.svg", label: "Gazlı İçecek" },
+        ].map((category, index) => (
+          <div key={index} className="category-item">
+            <img src={category.src} alt={category.label} />
+            <h3>{category.label}</h3>
           </div>
-          <div className="home-menu-item">
-            <img src="Assets/Iteration-2-aseets/icons/2.svg" alt="Pizza" />
-            <h1>Pizza</h1>
-          </div>
-          <div className="home-menu-item">
-            <img src="Assets/Iteration-2-aseets/icons/3.svg" alt="Burger" />
-            <h1>Burger</h1>
-          </div>
-        </div>
-      </div>
-      <div className="home-menu">
-        <div className="home-menu-items">
-          <div className="home-card">
-            <img src="Assets/Iteration-2-aseets/pictures/food-1.png" alt="Terminal Pizza" />
-            <h3>Terminal Pizza</h3>
-            <div className="home-card-info">
-              <p>4.9</p>
-              <p>(200)</p>
-              <p>60₺</p>
-            </div>
-          </div>
-          <div className="home-card">
-            <img src="Assets/Iteration-2-aseets/pictures/food-2.png" alt="Position Absolute Pizza" />
-            <h3>Position Absolute Pizza</h3>
-            <div className="home-card-info">
-              <p>4.9</p>
-              <p>(928)</p>
-              <p>85₺</p>
-            </div>
-          </div>
-          <div className="home-card">
-            <img src="Assets/Iteration-2-aseets/pictures/food-3.png" alt="useEffect Burger" />
-            <h3>useEffect Burger</h3>
-            <div className="home-card-info">
-              <p>4.9</p>
-              <p>(462)</p>
-              <p>75₺</p>
-            </div>
+        ))}
+      </section>
+
+      {/* Featured Section */}
+      <section className="featured-section">
+        <div className="featured-card">
+          <img src="src/adv-aseets/kart-1.png" alt="Lezzetus" />
+          <div className="card-info">
+            <h3>Özel Lezzetus</h3>
+            <p>Position: Absolute Acı Burger</p>
+            <button className="card-button">SİPARİŞ VER</button>
           </div>
         </div>
-      </div>
-      <footer className="home-footer">
-        <div className="home-footer-content">
-          <h1>Teknolojik Yemekler</h1>
-          <div className="home-footer-social">
-            <img src="src/adv-aseets/icons/twitter.png" alt="Twitter" />
-          </div>
+        {/* Add more cards as needed */}
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-content">
+          <h2>Teknolojik Yemekler</h2>
+          <p>© 2023 Teknolojik Yemekler</p>
         </div>
       </footer>
-    </>
+    </div>
   );
-}
+};
+
+export default Home;
+
