@@ -1,20 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Information.css";
 
-function Information({ sentData, formError = {} }) {
-  const { textName = "-", orderNote = "-", totalPrice = "-", tickness = "-", selectedItems = [], size = "-", quantity = 1 } = sentData || {};
+function Information({ sentData, formError = {}, onDataChange }) {
+  const {
+    textName = "-",
+    orderNote = "-",
+    totalPrice = "-",
+    tickness = "-",
+    selectedItems = [],
+    size = "-",
+    quantity = 1,
+  } = sentData || {};
+
+  // State for editing
+  const [editedTextName, setEditedTextName] = useState(textName);
+  const [editedOrderNote, setEditedOrderNote] = useState(orderNote);
+
+  const handleTextNameChange = (e) => {
+    setEditedTextName(e.target.value);
+    if (onDataChange) {
+      onDataChange("textName", e.target.value); // Notify parent component for update
+    }
+  };
+
+  const handleOrderNoteChange = (e) => {
+    setEditedOrderNote(e.target.value);
+    if (onDataChange) {
+      onDataChange("orderNote", e.target.value); // Notify parent component for update
+    }
+  };
 
   return (
     <div className="information-container">
       <h2 className="information-heading">Sipariş Detayları</h2>
       <div className="information-section">
         <h3 className="information-subheading">İsim Soyisim:</h3>
-        <p className="information-detail">{textName}</p>
+        <input
+          className="information-input"
+          type="text"
+          value={editedTextName}
+          onChange={handleTextNameChange}
+        />
         {formError.fullName && <p className="information-error-text">{formError.fullName}</p>}
       </div>
       <div className="information-section">
         <h3 className="information-subheading">Sipariş Notu:</h3>
-        <p className="information-detail">{orderNote}</p>
+        <textarea
+          className="information-input"
+          value={editedOrderNote}
+          onChange={handleOrderNoteChange}
+        />
       </div>
       <div className="information-section">
         <h3 className="information-subheading">Pizza Boyutu:</h3>
@@ -41,7 +76,7 @@ function Information({ sentData, formError = {} }) {
       <div className="information-section">
         <h3 className="information-subheading">Toplam Fiyat:</h3>
         <p className="information-detail">{totalPrice !== "-" ? `${totalPrice}₺` : "Hesaplanmadı"}</p>
-      </div> 
+      </div>
     </div>
   );
 }
