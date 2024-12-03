@@ -1,20 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Information.css";
 
-function Information({ sentData, formError = {} }) {
+function Information({ sentData, formError = {}, setTextName, setOrderNote }) {
   const { textName = "-", orderNote = "-", totalPrice = "-", tickness = "-", selectedItems = [], size = "-", quantity = 1 } = sentData || {};
+
+  const [name, setName] = useState(textName); // input için state
+  const [note, setNote] = useState(orderNote); // sipariş notu için state
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+    setTextName(e.target.value); // üst bileşene veri göndermek için
+  };
+
+  const handleNoteChange = (e) => {
+    setNote(e.target.value);
+    setOrderNote(e.target.value); // üst bileşene sipariş notunu göndermek için
+  };
 
   return (
     <div className="information-container">
       <h2 className="information-heading">Sipariş Detayları</h2>
       <div className="information-section">
         <h3 className="information-subheading">İsim Soyisim:</h3>
-        <p className="information-detail">{textName}</p>
+        <input 
+          type="text" 
+          className="information-input" 
+          value={name} 
+          onChange={handleNameChange} 
+          placeholder="Adınızı girin" 
+        />
         {formError.fullName && <p className="information-error-text">{formError.fullName}</p>}
       </div>
       <div className="information-section">
         <h3 className="information-subheading">Sipariş Notu:</h3>
-        <p className="information-detail">{orderNote}</p>
+        <textarea
+          className="information-textarea"
+          value={note}
+          onChange={handleNoteChange}
+          placeholder="Sipariş notunuzu buraya yazın"
+        />
       </div>
       <div className="information-section">
         <h3 className="information-subheading">Pizza Boyutu:</h3>
