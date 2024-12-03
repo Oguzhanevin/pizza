@@ -6,10 +6,19 @@ function Information({ sentData, formError = {}, setTextName, setOrderNote }) {
 
   const [name, setName] = useState(textName); // input için state
   const [note, setNote] = useState(orderNote); // sipariş notu için state
+  const [error, setError] = useState("");
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
-    setTextName(e.target.value); // üst bileşene veri göndermek için
+    const newName = e.target.value;
+    setName(newName);
+    setTextName(newName); // üst bileşene veri göndermek için
+
+    // İsim Soyisim kontrolü: 3 harften kısa olamaz
+    if (newName.length < 3) {
+      setError("İsim ve soyisim en az 3 harften oluşmalıdır.");
+    } else {
+      setError("");
+    }
   };
 
   const handleNoteChange = (e) => {
@@ -29,6 +38,7 @@ function Information({ sentData, formError = {}, setTextName, setOrderNote }) {
           onChange={handleNameChange} 
           placeholder="Adınızı girin" 
         />
+        {error && <p className="information-error-text">{error}</p>}  {/* Hata mesajı */}
         {formError.fullName && <p className="information-error-text">{formError.fullName}</p>}
       </div>
       <div className="information-section">
