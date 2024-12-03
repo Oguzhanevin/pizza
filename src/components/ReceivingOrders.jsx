@@ -1,3 +1,4 @@
+import React from "react";
 import "./ReceivingOrders.css";
 
 const ReceivingOrders = ({ sentData }) => {
@@ -45,3 +46,7 @@ const ReceivingOrders = ({ sentData }) => {
     </div>
   );
 };
+
+export default ReceivingOrders;
+
+

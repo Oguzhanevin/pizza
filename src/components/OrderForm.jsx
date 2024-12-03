@@ -1,12 +1,68 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import Sizing from "./Sizing";  
+import Extra from "./Extra";
+import Order from "./Order";
 import Information from "./Information";
-// ... diğer importlar
+import "./Orderform.css";
 
 const OrderForm = () => {
-  const [textName, setTextName] = useState(""); // ismi tutan state
-  const [orderNote, setOrderNote] = useState(""); // sipariş notunu tutan state
+  const history = useHistory();
 
-  // ... diğer kodlar
+  const [textName, setTextName] = useState("");
+  const [orderNote, setOrderNote] = useState("");
+  const [totalPrice, setTotalPrice] = useState(20);  
+  const [formError, setFormError] = useState({});
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [tickness, setTickness] = useState("-");
+  const [size, setSize] = useState("-");
+  const [quantity, setQuantity] = useState(1);
+
+  const handleItemSelection = (event) => {
+    const { checked, name } = event.target;
+    if (checked) {
+      setSelectedItems((prev) => [...prev, name]);
+    } else {
+      setSelectedItems((prev) => prev.filter((item) => item !== name));
+    }
+  };
+
+  const countUp = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const countDown = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    if (!textName) {
+      setFormError({ fullName: "Adınızı girin." });
+      return;
+    }
+
+    try {
+      const response = await axios.post("/api/order", {
+        textName,
+        orderNote,
+        totalPrice,
+        selectedItems,
+        tickness,
+        size,
+        quantity,
+      });
+
+      history.push("/thank-you"); 
+    } catch (error) {
+      setFormError({
+        ...formError,
+        total: "Sipariş gönderilemedi. Lütfen tekrar deneyin.",
+      });
+    }
+  };
 
   return (
     <div className="orderform-container">
@@ -17,12 +73,7 @@ const OrderForm = () => {
           selectedItems={selectedItems} 
           formError={formError} 
         />
-        <Information 
-          sentData={{ textName, orderNote, totalPrice, tickness, selectedItems, size, quantity }} 
-          formError={formError} 
-          setTextName={setTextName}  // setTextName fonksiyonu gönderildi
-          setOrderNote={setOrderNote}  // setOrderNote fonksiyonu gönderildi
-        />
+        <Information sentData={{ textName, orderNote, totalPrice, tickness, selectedItems, size, quantity }} formError={formError} />
         <Order 
           totalPrice={totalPrice} 
           countUp={countUp} 
