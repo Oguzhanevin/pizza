@@ -1,54 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Information.css";
 
-function Information({ sentData, formError = {}, setTextName, setOrderNote }) {
+function Information({ sentData, formError = {} }) {
   const { textName = "-", orderNote = "-", totalPrice = "-", tickness = "-", selectedItems = [], size = "-", quantity = 1 } = sentData || {};
-
-  const [name, setName] = useState(textName); // input için state
-  const [note, setNote] = useState(orderNote); // sipariş notu için state
-  const [error, setError] = useState("");
-
-  const handleNameChange = (e) => {
-    const newName = e.target.value;
-    setName(newName);
-    setTextName(newName); // üst bileşene veri göndermek için
-
-    // İsim Soyisim kontrolü: 3 harften kısa olamaz
-    if (newName.length < 3) {
-      setError("İsim ve soyisim en az 3 harften oluşmalıdır.");
-    } else {
-      setError("");
-    }
-  };
-
-  const handleNoteChange = (e) => {
-    setNote(e.target.value);
-    setOrderNote(e.target.value); // üst bileşene sipariş notunu göndermek için
-  };
 
   return (
     <div className="information-container">
       <h2 className="information-heading">Sipariş Detayları</h2>
       <div className="information-section">
         <h3 className="information-subheading">İsim Soyisim:</h3>
-        <input 
-          type="text" 
-          className="information-input" 
-          value={name} 
-          onChange={handleNameChange} 
-          placeholder="Adınızı girin" 
-        />
-        {error && <p className="information-error-text">{error}</p>}  {/* Hata mesajı */}
+        <p className="information-detail">{textName}</p>
         {formError.fullName && <p className="information-error-text">{formError.fullName}</p>}
       </div>
       <div className="information-section">
         <h3 className="information-subheading">Sipariş Notu:</h3>
-        <textarea
-          className="information-textarea"
-          value={note}
-          onChange={handleNoteChange}
-          placeholder="Sipariş notunuzu buraya yazın"
-        />
+        <p className="information-detail">{orderNote}</p>
       </div>
       <div className="information-section">
         <h3 className="information-subheading">Pizza Boyutu:</h3>
@@ -75,7 +41,7 @@ function Information({ sentData, formError = {}, setTextName, setOrderNote }) {
       <div className="information-section">
         <h3 className="information-subheading">Toplam Fiyat:</h3>
         <p className="information-detail">{totalPrice !== "-" ? `${totalPrice}₺` : "Hesaplanmadı"}</p>
-      </div> 
+      </div>
     </div>
   );
 }

@@ -1,15 +1,7 @@
 import React from 'react';
 import './Sizing.css';
 
-function Sizing({ size, setSize, tickness, setTickness }) {
-  const handleRadioChange = (e) => {
-    setSize(e.target.value);
-  };
-
-  const optionSelection = (e) => {
-    setTickness(e.target.value);
-  };
-
+function Sizing({ size, handleRadioChange, tickness, optionSelection }) {
   return (
     <div className="sizing-container">
       <div className="sizing-left">
