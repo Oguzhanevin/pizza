@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import * as Yup from "yup";
 import axios from "axios";
 import Sizing from "./Sizing";
 import Additional from "./Extra";
@@ -7,15 +6,8 @@ import GiveAnOrder from "./Order";
 import Info from "./Information";
 import "./OrderForm.css";
 import { useHistory } from "react-router-dom";
-
-const formData = {
-  pizzaSize: "",
-  pizzaDough: "",
-  addItems: [],
-  fullName: "",
-  orderQuantity: "",
-  totalBasket: "",
-};
+import Order from "./Order";
+import Extra from "./Extra";
 
 const OrderForm = ({ setSentData }) => {
   const history = useHistory();
@@ -30,15 +22,6 @@ const OrderForm = ({ setSentData }) => {
   const [quantity, setQuantity] = useState(1);
   const [textName, setTextName] = useState("");
   const [orderNote, setOrderNote] = useState("");
-
-  const [formError, setFormError] = useState({
-    pizzaSize: "",
-    pizzaDough: "",
-    addItems: [],
-    fullName: "",
-    orderQuantity: "",
-    totalBasket: "",
-  });
 
   const mainPage = () => {
     history.push("./");
@@ -88,21 +71,38 @@ const OrderForm = ({ setSentData }) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    for (let key in formData) {
-      checkValidationFor(key, formData[key]);
-    }
-  };
 
-  const checkValidationFor = async (field, value) => {
-    try {
-      await Yup.reach(formDataSchema, field).validate(value);
-      setFormError((prevFormErrors) => ({ ...prevFormErrors, [field]: "" }));
-    } catch (err) {
-      setFormError((prevFormErrors) => ({
-        ...prevFormErrors,
-        [field]: err.errors[0],
-      }));
+    // Form Validasyonu
+    const errors = {};
+    if (!size) errors.pizzaSize = "Boyut seçimi zorunludur.";
+    if (!tickness) errors.pizzaDough = "Hamur seçimi zorunludur.";
+    if (!textName.trim()) errors.fullName = "İsim alanı boş bırakılamaz.";
+    if (!quantity || quantity <= 0) errors.orderQuantity = "Geçerli bir adet seçiniz.";
+
+    if (Object.keys(errors).length > 0) {
+      console.log("Form Hataları:", errors);
+      return;
     }
+
+    const formData = {
+      pizzaSize: size,
+      pizzaDough: tickness,
+      addItems: itemsArr,
+      fullName: textName,
+      orderQuantity: quantity,
+      totalBasket: (totalPrice + tickPrice + additionalPrice) * quantity,
+    };
+
+    setSentData(formData);
+
+    // Veriyi sunucuya gönderme (isteğe bağlı)
+    axios
+      .post("https://example.com/api/order", formData)
+      .then((response) => {
+        console.log("Sipariş Başarıyla Alındı:", response.data);
+        history.push("./order-received", { ...formData });
+      })
+      .catch((error) => console.error("Sipariş Hatası:", error));
   };
 
   useEffect(() => {
@@ -130,16 +130,6 @@ const OrderForm = ({ setSentData }) => {
     setTickPrice(price);
   }, [tickness]);
 
-  useEffect(() => {
-    formData.pizzaSize = size;
-    formData.pizzaDough = tickness;
-    formData.addItems = itemsArr;
-    formData.fullName = textName;
-    formData.orderQuantity = quantity;
-    formData.totalBasket =
-      (totalPrice + tickPrice + additionalPrice) * quantity;
-  }, [size, tickness, itemsArr, textName, totalPrice, tickPrice, additionalPrice, quantity]);
-
   return (
     <form id="pizza-form" onSubmit={submitHandler}>
       <div className="order-form-container">
@@ -155,12 +145,12 @@ const OrderForm = ({ setSentData }) => {
           <div className="product-details">
             <h3>Position Absolute Pizza</h3>
             <h1>{productInPrice}₺</h1>
-            <p>Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre...</p>
+            <p>Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre...</p>
           </div>
           <Sizing size={size} handleRadioChange={handleRadioChange} tickness={tickness} optionSelection={optionSelection} />
-          <Additional checkSelection={checkSelection} formError={formError} itemsArr={itemsArr} />
-          <Info formError={formError} textValue={textValue} textName={textName} orderNoteChange={orderNoteChange} orderNote={orderNote} />
-          <GiveAnOrder
+          <Extra checkSelection={checkSelection} itemsArr={itemsArr} />
+          <Info textValue={textValue} textName={textName} orderNoteChange={orderNoteChange} orderNote={orderNote} />
+          <Order
             totalPrice={totalPrice}
             tickPrice={tickPrice}
             additionalPrice={additionalPrice}
