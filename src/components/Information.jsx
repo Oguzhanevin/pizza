@@ -41,10 +41,9 @@ function Information({ sentData, formError = {} }) {
       <div className="information-section">
         <h3 className="information-subheading">Toplam Fiyat:</h3>
         <p className="information-detail">{totalPrice !== "-" ? `${totalPrice}₺` : "Hesaplanmadı"}</p>
-      </div>
+      </div> 
     </div>
   );
 }
 
 export default Information;
-
