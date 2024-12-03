@@ -49,4 +49,3 @@ const ReceivingOrders = ({ sentData }) => {
 
 export default ReceivingOrders;
 
-
