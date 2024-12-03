@@ -1,33 +1,30 @@
-import React from "react";
 import "./ReceivingOrders.css";
 
 const ReceivingOrders = ({ sentData }) => {
-  if (!sentData) return <div>Yükleniyor...</div>;
-
   return (
     <div className="receiving-container">
       <div className="receiving-content">
         <div className="receiving-header">
           <h1 className="receiving-title">Teknolojik Yemekler</h1>
           <div className="order-status-section">
-            <p className="order-subtitle">Lezzetin Yolda</p>
-            <h2 className="order-confirmation">Sipariş Alındı</h2>
+            <p className="order-subtitle">lezzetin yolda</p>
+            <h2 className="order-confirmation">SİPARİŞ Alındı</h2>
           </div>
         </div>
         <div className="pizza-details-section">
           <h3 className="pizza-name">Position Absolute Acı Pizza</h3>
           <div className="pizza-info">
             <p>
-              <span>Boyut:</span> <span className="info-value">{sentData.size}</span>
+              <span>Boyut:</span> <span className="info-value">{sentData.pizzaSize}</span>
             </p>
             <p>
-              <span>Hamur:</span> <span className="info-value">{sentData.tickness}</span>
+              <span>Hamur:</span> <span className="info-value">{sentData.pizzaDough}</span>
             </p>
             <p>
               <span>Ek Malzemeler:</span>
               <span className="info-value">
-                {sentData.selectedItems.length > 0
-                  ? sentData.selectedItems.join(", ")
+                {sentData.addItems.length > 0
+                  ? sentData.addItems.join(", ")
                   : "Ek malzeme seçilmedi"}
               </span>
             </p>
@@ -37,10 +34,10 @@ const ReceivingOrders = ({ sentData }) => {
           <h3>Sipariş Toplamı</h3>
           <div className="summary-details">
             <p>
-              <span>Seçimler:</span> <span className="summary-value">{sentData.selectedItems.length * 5}₺</span>
+              <span>Seçimler:</span> <span className="summary-value">{sentData.addItems.length * 5}₺</span>
             </p>
             <p>
-              <span>Toplam:</span> <span className="summary-value">{sentData.totalPrice}₺</span>
+              <span>Toplam:</span> <span className="summary-value">{sentData.totalBasket}₺</span>
             </p>
           </div>
         </div>
@@ -48,5 +45,3 @@ const ReceivingOrders = ({ sentData }) => {
     </div>
   );
 };
-
-export default ReceivingOrders;

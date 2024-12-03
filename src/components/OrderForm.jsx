@@ -1,51 +1,36 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom"; // useHistory'i import ettik
-import axios from "axios";
-import "./OrderForm.css";
+import Information from "./Information";
+// ... diğer importlar
 
-const OrderForm = ({ setSentData }) => {
-  const history = useHistory(); // useHistory hook'u ile history objesini alıyoruz
-  const [textName, setTextName] = useState("");
-  const [orderNote, setOrderNote] = useState("");
-  const [totalPrice, setTotalPrice] = useState(20);
-  const [formError, setFormError] = useState({});
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [size, setSize] = useState("-");
-  const [tickness, setTickness] = useState("-");
-  const [quantity, setQuantity] = useState(1);
+const OrderForm = () => {
+  const [textName, setTextName] = useState(""); // ismi tutan state
+  const [orderNote, setOrderNote] = useState(""); // sipariş notunu tutan state
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!textName) {
-      setFormError({ fullName: "Adınızı girin." });
-      return;
-    }
-
-    // Burada sipariş verileri API'ye gönderilebilir, ancak şimdilik sadece veriyi state'e kaydediyoruz
-    const orderData = {
-      textName,
-      orderNote,
-      totalPrice,
-      selectedItems,
-      size,
-      tickness,
-      quantity,
-    };
-
-    // Veriyi App.js'ye gönder
-    setSentData(orderData);
-
-    // Sipariş tamamlandıktan sonra ReceivingOrders sayfasına yönlendirme yapıyoruz
-    history.push("/receiving-orders"); // Yönlendirme adresini /receiving-orders olarak değiştirdik
-  };
+  // ... diğer kodlar
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* Diğer form elemanları */}
-      <button type="submit">Sipariş Ver</button>
-    </form>
+    <div className="orderform-container">
+      <form onSubmit={submitHandler} className="orderform">
+        <Sizing setSize={setSize} setTickness={setTickness} size={size} tickness={tickness} />
+        <Extra 
+          handleItemSelection={handleItemSelection} 
+          selectedItems={selectedItems} 
+          formError={formError} 
+        />
+        <Information 
+          sentData={{ textName, orderNote, totalPrice, tickness, selectedItems, size, quantity }} 
+          formError={formError} 
+          setTextName={setTextName}  // setTextName fonksiyonu gönderildi
+          setOrderNote={setOrderNote}  // setOrderNote fonksiyonu gönderildi
+        />
+        <Order 
+          totalPrice={totalPrice} 
+          countUp={countUp} 
+          countDown={countDown} 
+          quantity={quantity} 
+          submitHandler={submitHandler}
+        />
+      </form>
+    </div>
   );
 };
-
-export default OrderForm;

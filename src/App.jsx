@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import OrderForm from "./components/OrderForm";
-import ReceivingOrders from "./components/ReceivingOrders"; // ReceivingOrders component'ini import ettik
 import Information from "./components/Information";
 
 function App() {
@@ -20,12 +19,7 @@ function App() {
         <Route path="/information">
           <Information sentData={sentData} />
         </Route>
-        <Route path="/order-confirmation">
-          <ReceivingOrders sentData={sentData} />
-        </Route>
       </Switch>
     </Router>
   );
 }
-
-export default App;
