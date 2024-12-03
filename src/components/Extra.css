@@ -1,42 +1,50 @@
-.extra-container {
-  margin-top: 20px;
-  color: #3f3f3f;
-  font-family: "Barlow", sans-serif;
-}
-
+/* Başlık ve açıklama stili */
 .extra-header {
-  margin-bottom: 10px;
+  color: #27272a;
+  margin-top: 20px;
+  font-family: 'Barlow', sans-serif;
 }
 
 .extra-header h3 {
-  font-size: 1.2rem;
   font-weight: 600;
+  line-height: 1.5;
 }
 
 .extra-header p {
-  font-size: 0.9rem;
+  font-size: 13px;
   color: #737373;
-  line-height: 1.6;
 }
 
-.error {
-  color: #dc2626;
-  font-size: 0.9rem;
+.extra-header .error {
+  color: #dc2626; /* Hata mesajları için kırmızı renk */
 }
 
-.extra-items {
-  display: flex;
-  flex-wrap: wrap;
+/* Ekstra malzeme seçenekleri */
+.extra-options {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Düzgün dağılım için grid */
   gap: 10px;
 }
 
-.extra-item {
-  width: 30%;
-  font-size: 0.9rem;
+.option {
+  font-family: 'Barlow', sans-serif;
   color: #737373;
 }
 
-.extra-item input[type="checkbox"] {
-  accent-color: #2563eb;
-  margin-right: 5px;
+.option input[type="checkbox"] {
+  accent-color: #2563eb; /* Checkbox işaretleme rengi */
+}
+
+/* Responsive düzen */
+@media (max-width: 768px) {
+  .extra-options {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Orta ekranlar için düzenleme */
+  }
+}
+
+@media (max-width: 480px) {
+  .extra-options {
+    grid-template-columns: 1fr; /* Küçük ekranlarda her öğe tam genişlikte */
+  }
 }
