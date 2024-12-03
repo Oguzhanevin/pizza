@@ -1,39 +1,32 @@
-.information-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.information-section {
   margin-top: 20px;
-}
-
-.field-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-.label {
-  font-family: "Barlow", sans-serif;
+.information-label {
+  color: #292524;
   font-weight: 600;
-  color: #4a4a4a;
+  font-family: 'Barlow', sans-serif;
 }
 
-.input-field {
+.information-field {
   width: 66%;
   height: 40px;
-  border: 2px solid #d4d4d4;
+  border: 2px solid #a1a1aa;
   border-radius: 8px;
   padding: 8px;
-  font-size: 14px;
-  font-family: "Barlow", sans-serif;
+  box-sizing: border-box;
 }
 
-.input-field::placeholder {
-  color: #a1a1a1;
-  font-size: 14px;
+.information-field:focus {
+  outline: none;
+  border-color: #4b5563;
 }
 
-.error-text {
-  color: #e63946;
-  font-size: 12px;
-  font-family: "Barlow", sans-serif;
+.information-error-message {
+  color: #dc2626;
+  font-size: 14px;
+  margin-top: 4px;
 }
