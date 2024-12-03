@@ -1,46 +1,37 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import "./ReceivingOrders.css";
 
-const ReceivingOrders = ({ sentData }) => {
+const ReceivingOrders = () => {
+  const location = useLocation();
+  const { textName, orderNote, pizzaSize, pizzaDough, addItems, quantity, totalBasket } = location.state || {};
+
   return (
     <div className="receiving-container">
       <div className="receiving-content">
         <div className="receiving-header">
           <h1 className="receiving-title">Teknolojik Yemekler</h1>
           <div className="order-status-section">
-            <p className="order-subtitle">lezzetin yolda</p>
+            <p className="order-subtitle">Lezzetin yolda</p>
             <h2 className="order-confirmation">SİPARİŞ Alındı</h2>
           </div>
         </div>
-        <div className="pizza-details-section">
-          <h3 className="pizza-name">Position Absolute Acı Pizza</h3>
-          <div className="pizza-info">
-            <p>
-              <span>Boyut:</span> <span className="info-value">{sentData.pizzaSize}</span>
-            </p>
-            <p>
-              <span>Hamur:</span> <span className="info-value">{sentData.pizzaDough}</span>
-            </p>
-            <p>
-              <span>Ek Malzemeler:</span>
-              <span className="info-value">
-                {sentData.addItems.length > 0
-                  ? sentData.addItems.join(", ")
-                  : "Ek malzeme seçilmedi"}
-              </span>
-            </p>
+        
+        <div className="order-details-section">
+          <h3 className="order-details-title">Sipariş Detayları</h3>
+          <div className="order-info">
+            <p><strong>İsim Soyisim:</strong> {textName}</p> {/* Kullanıcı adı burada gösterilecek */}
+            <p><strong>Sipariş Notu:</strong> {orderNote || "Belirtilmedi"}</p>
+            <p><strong>Pizza Boyutu:</strong> {pizzaSize}</p>
+            <p><strong>Hamur Kalınlığı:</strong> {pizzaDough}</p>
+            <p><strong>Malzemeler:</strong> {addItems.length > 0 ? addItems.join(", ") : "Ek malzeme seçilmedi"}</p>
+            <p><strong>Adet:</strong> {quantity}</p>
+            <p><strong>Toplam Fiyat:</strong> {totalBasket}₺</p>
           </div>
         </div>
-        <div className="order-summary-section">
-          <h3>Sipariş Toplamı</h3>
-          <div className="summary-details">
-            <p>
-              <span>Seçimler:</span> <span className="summary-value">{sentData.addItems.length * 5}₺</span>
-            </p>
-            <p>
-              <span>Toplam:</span> <span className="summary-value">{sentData.totalBasket}₺</span>
-            </p>
-          </div>
+        
+        <div className="thank-you-message">
+          <h3>Şu an siparişiniz alındı, yakın bir zamanda lezzetli pizzalarınız yolda olacak!</h3>
         </div>
       </div>
     </div>
@@ -48,4 +39,3 @@ const ReceivingOrders = ({ sentData }) => {
 };
 
 export default ReceivingOrders;
-
