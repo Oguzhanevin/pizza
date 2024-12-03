@@ -67,7 +67,7 @@ const OrderForm = () => {
   return (
     <div className="orderform-container">
       <form onSubmit={submitHandler} className="orderform">
-        <Sizing setSize={setSize} setTickness={setTickness} />
+        <Sizing setSize={setSize} setTickness={setTickness} size={size} tickness={tickness} />
         <Extra 
           handleItemSelection={handleItemSelection} 
           selectedItems={selectedItems} 
