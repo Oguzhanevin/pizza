@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import OrderForm from "./components/OrderForm";
@@ -8,15 +8,9 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/pizza">
-          <OrderForm />
-        </Route>
-        <Route path="/thank-you">
-          <ReceivingOrders />
-        </Route>
+        <Route exact path="/" component={Home} />
+        <Route path="/pizza" component={OrderForm} />
+        <Route path="/receiving-orders" component={ReceivingOrders} />
       </Switch>
     </Router>
   );

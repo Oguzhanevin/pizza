@@ -4,15 +4,11 @@ import "./ReceivingOrders.css";
 
 const ReceivingOrders = () => {
   const location = useLocation();
-  const sentData = location.state?.sentData || {};
+  const sentData = location.state;
 
-  const {
-    textName = "-",
-    pizzaSize = "-",
-    pizzaDough = "-",
-    addItems = [],
-    totalBasket = "-",
-  } = sentData;
+  if (!sentData) {
+    return <p>Veri alınamadı. Lütfen siparişi yeniden deneyin.</p>;
+  }
 
   return (
     <div className="receiving-container">
@@ -20,23 +16,25 @@ const ReceivingOrders = () => {
         <div className="receiving-header">
           <h1 className="receiving-title">Teknolojik Yemekler</h1>
           <div className="order-status-section">
-            <p className="order-subtitle">Lezzetin yolda</p>
-            <h2 className="order-confirmation">SİPARİŞ ALINDI</h2>
+            <p className="order-subtitle">Lezzetin yolda!</p>
+            <h2 className="order-confirmation">Sipariş Alındı</h2>
           </div>
         </div>
         <div className="pizza-details-section">
-          <h3 className="pizza-name">{textName}</h3>
+          <h3 className="pizza-name">Position Absolute Acı Pizza</h3>
           <div className="pizza-info">
             <p>
-              <span>Boyut:</span> <span className="info-value">{pizzaSize}</span>
+              <span>Boyut:</span> <span className="info-value">{sentData.size}</span>
             </p>
             <p>
-              <span>Hamur:</span> <span className="info-value">{pizzaDough}</span>
+              <span>Hamur:</span> <span className="info-value">{sentData.tickness}</span>
             </p>
             <p>
               <span>Ek Malzemeler:</span>
               <span className="info-value">
-                {addItems.length > 0 ? addItems.join(", ") : "Ek malzeme seçilmedi"}
+                {sentData.selectedItems.length > 0
+                  ? sentData.selectedItems.join(", ")
+                  : "Ek malzeme seçilmedi"}
               </span>
             </p>
           </div>
@@ -45,7 +43,10 @@ const ReceivingOrders = () => {
           <h3>Sipariş Toplamı</h3>
           <div className="summary-details">
             <p>
-              <span>Toplam:</span> <span className="summary-value">{totalBasket}₺</span>
+              <span>Seçimler:</span> <span className="summary-value">{sentData.selectedItems.length * 5}₺</span>
+            </p>
+            <p>
+              <span>Toplam:</span> <span className="summary-value">{sentData.totalPrice}₺</span>
             </p>
           </div>
         </div>

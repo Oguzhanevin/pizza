@@ -5,11 +5,10 @@ import Sizing from "./Sizing";
 import Extra from "./Extra";
 import Order from "./Order";
 import Information from "./Information";
-import "./Orderform.css";
+import "./OrderForm.css";
 
 const OrderForm = () => {
   const history = useHistory();
-
   const [textName, setTextName] = useState("");
   const [orderNote, setOrderNote] = useState("");
   const [totalPrice, setTotalPrice] = useState(20);
@@ -21,13 +20,20 @@ const OrderForm = () => {
 
   const handleItemSelection = (event) => {
     const { checked, name } = event.target;
-    setSelectedItems((prev) =>
-      checked ? [...prev, name] : prev.filter((item) => item !== name)
-    );
+    if (checked) {
+      setSelectedItems((prev) => [...prev, name]);
+    } else {
+      setSelectedItems((prev) => prev.filter((item) => item !== name));
+    }
   };
 
-  const countUp = () => setQuantity((prev) => prev + 1);
-  const countDown = () => setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
+  const countUp = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const countDown = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -37,22 +43,21 @@ const OrderForm = () => {
       return;
     }
 
+    const sentData = {
+      textName,
+      orderNote,
+      totalPrice,
+      selectedItems,
+      tickness,
+      size,
+      quantity,
+    };
+
     try {
-      const sentData = {
-        textName,
-        orderNote,
-        totalPrice,
-        tickness,
-        size,
-        selectedItems,
-        quantity,
-      };
-
       await axios.post("/api/order", sentData);
-
       history.push({
-        pathname: "/thank-you",
-        state: { sentData },
+        pathname: "/receiving-orders",
+        state: sentData,
       });
     } catch (error) {
       setFormError({
@@ -67,17 +72,8 @@ const OrderForm = () => {
       <form onSubmit={submitHandler} className="orderform">
         <Sizing setSize={setSize} setTickness={setTickness} size={size} tickness={tickness} />
         <Extra handleItemSelection={handleItemSelection} selectedItems={selectedItems} formError={formError} />
-        <Information
-          sentData={{ textName, orderNote, totalPrice, tickness, selectedItems, size, quantity }}
-          formError={formError}
-        />
-        <Order
-          totalPrice={totalPrice}
-          countUp={countUp}
-          countDown={countDown}
-          quantity={quantity}
-          submitHandler={submitHandler}
-        />
+        <Information sentData={{ textName, orderNote, totalPrice, tickness, selectedItems, size, quantity }} formError={formError} />
+        <Order totalPrice={totalPrice} countUp={countUp} countDown={countDown} quantity={quantity} submitHandler={submitHandler} />
       </form>
     </div>
   );
