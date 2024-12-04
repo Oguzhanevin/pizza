@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Sizing from "./Sizing";
 import Extra from "./Extra";
-import Order from "./Order";
 import Information from "./Information";
-import "./OrderForm.css";
+import Order from "./Order";
+import "./Orderform.css";
 
-const OrderForm = () => {
-  const history = useHistory();
+const OrderForm = ({ setSentData }) => {
+  const navigate = useNavigate();
+
   const [textName, setTextName] = useState("");
   const [orderNote, setOrderNote] = useState("");
   const [totalPrice, setTotalPrice] = useState(20);
@@ -20,30 +21,21 @@ const OrderForm = () => {
 
   const handleItemSelection = (event) => {
     const { checked, name } = event.target;
-    if (checked) {
-      setSelectedItems((prev) => [...prev, name]);
-    } else {
-      setSelectedItems((prev) => prev.filter((item) => item !== name));
-    }
+    setSelectedItems((prev) =>
+      checked ? [...prev, name] : prev.filter((item) => item !== name)
+    );
   };
 
-  const countUp = () => {
-    setQuantity((prev) => prev + 1);
-  };
+  const countUp = () => setQuantity((prev) => prev + 1);
+  const countDown = () => setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
 
-  const countDown = () => {
-    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
-  };
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-
+  const submitHandler = async () => {
     if (!textName) {
       setFormError({ fullName: "Adınızı girin." });
       return;
     }
 
-    const sentData = {
+    const orderData = {
       textName,
       orderNote,
       totalPrice,
@@ -54,11 +46,9 @@ const OrderForm = () => {
     };
 
     try {
-      await axios.post("/api/order", sentData);
-      history.push({
-        pathname: "/receiving-orders",
-        state: sentData,
-      });
+      await axios.post("/api/order", orderData); // API çağrısı
+      setSentData(orderData); // Veriyi gönder
+      navigate("/receiving-orders"); // Yönlendir
     } catch (error) {
       setFormError({
         ...formError,
@@ -69,11 +59,17 @@ const OrderForm = () => {
 
   return (
     <div className="orderform-container">
-      <form onSubmit={submitHandler} className="orderform">
+      <form className="orderform">
         <Sizing setSize={setSize} setTickness={setTickness} size={size} tickness={tickness} />
         <Extra handleItemSelection={handleItemSelection} selectedItems={selectedItems} formError={formError} />
         <Information sentData={{ textName, orderNote, totalPrice, tickness, selectedItems, size, quantity }} formError={formError} />
-        <Order totalPrice={totalPrice} countUp={countUp} countDown={countDown} quantity={quantity} submitHandler={submitHandler} />
+        <Order
+          totalPrice={totalPrice}
+          countUp={countUp}
+          countDown={countDown}
+          quantity={quantity}
+          submitHandler={submitHandler}
+        />
       </form>
     </div>
   );

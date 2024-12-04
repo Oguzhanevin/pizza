@@ -1,54 +1,27 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import "./ReceivingOrders.css";
 
-const ReceivingOrders = () => {
-  const location = useLocation();
-  const sentData = location.state;
+const ReceivingOrders = ({ sentData }) => {
+  if (!sentData) return <p>Sipariş bilgisi bulunamadı!</p>;
 
-  if (!sentData) {
-    return <p>Veri alınamadı. Lütfen siparişi yeniden deneyin.</p>;
-  }
+  const { textName, orderNote, totalPrice, tickness, size, quantity, selectedItems } = sentData;
 
   return (
     <div className="receiving-container">
       <div className="receiving-content">
-        <div className="receiving-header">
-          <h1 className="receiving-title">Teknolojik Yemekler</h1>
-          <div className="order-status-section">
-            <p className="order-subtitle">Lezzetin yolda!</p>
-            <h2 className="order-confirmation">Sipariş Alındı</h2>
-          </div>
-        </div>
-        <div className="pizza-details-section">
-          <h3 className="pizza-name">Position Absolute Acı Pizza</h3>
-          <div className="pizza-info">
-            <p>
-              <span>Boyut:</span> <span className="info-value">{sentData.size}</span>
-            </p>
-            <p>
-              <span>Hamur:</span> <span className="info-value">{sentData.tickness}</span>
-            </p>
-            <p>
-              <span>Ek Malzemeler:</span>
-              <span className="info-value">
-                {sentData.selectedItems.length > 0
-                  ? sentData.selectedItems.join(", ")
-                  : "Ek malzeme seçilmedi"}
-              </span>
-            </p>
-          </div>
-        </div>
-        <div className="order-summary-section">
-          <h3>Sipariş Toplamı</h3>
-          <div className="summary-details">
-            <p>
-              <span>Seçimler:</span> <span className="summary-value">{sentData.selectedItems.length * 5}₺</span>
-            </p>
-            <p>
-              <span>Toplam:</span> <span className="summary-value">{sentData.totalPrice}₺</span>
-            </p>
-          </div>
+        <h1>Teknolojik Yemekler</h1>
+        <h2>Sipariş Alındı</h2>
+        <p>Lezzetin yolda!</p>
+
+        <div className="order-summary">
+          <h3>Pizza Detayları</h3>
+          <p><strong>İsim:</strong> {textName}</p>
+          <p><strong>Not:</strong> {orderNote}</p>
+          <p><strong>Boyut:</strong> {size}</p>
+          <p><strong>Hamur:</strong> {tickness}</p>
+          <p><strong>Adet:</strong> {quantity}</p>
+          <p><strong>Ek Malzemeler:</strong> {selectedItems.length > 0 ? selectedItems.join(", ") : "Ek malzeme seçilmedi"}</p>
+          <h4>Toplam Fiyat: {totalPrice}₺</h4>
         </div>
       </div>
     </div>
