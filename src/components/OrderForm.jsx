@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import Sizing from "./Sizing";  
+import Sizing from "./Sizing";
 import Extra from "./Extra";
 import Order from "./Order";
 import Information from "./Information";
@@ -12,7 +12,7 @@ const OrderForm = () => {
 
   const [textName, setTextName] = useState("");
   const [orderNote, setOrderNote] = useState("");
-  const [totalPrice, setTotalPrice] = useState(20);  
+  const [totalPrice, setTotalPrice] = useState(20);
   const [formError, setFormError] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
   const [tickness, setTickness] = useState("-");
@@ -21,20 +21,13 @@ const OrderForm = () => {
 
   const handleItemSelection = (event) => {
     const { checked, name } = event.target;
-    if (checked) {
-      setSelectedItems((prev) => [...prev, name]);
-    } else {
-      setSelectedItems((prev) => prev.filter((item) => item !== name));
-    }
+    setSelectedItems((prev) =>
+      checked ? [...prev, name] : prev.filter((item) => item !== name)
+    );
   };
 
-  const countUp = () => {
-    setQuantity((prev) => prev + 1);
-  };
-
-  const countDown = () => {
-    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
-  };
+  const countUp = () => setQuantity((prev) => prev + 1);
+  const countDown = () => setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -45,17 +38,22 @@ const OrderForm = () => {
     }
 
     try {
-      const response = await axios.post("/api/order", {
+      const sentData = {
         textName,
         orderNote,
         totalPrice,
-        selectedItems,
         tickness,
         size,
+        selectedItems,
         quantity,
-      });
+      };
 
-      history.push("/thank-you"); 
+      await axios.post("/api/order", sentData);
+
+      history.push({
+        pathname: "/thank-you",
+        state: { sentData },
+      });
     } catch (error) {
       setFormError({
         ...formError,
@@ -68,17 +66,16 @@ const OrderForm = () => {
     <div className="orderform-container">
       <form onSubmit={submitHandler} className="orderform">
         <Sizing setSize={setSize} setTickness={setTickness} size={size} tickness={tickness} />
-        <Extra 
-          handleItemSelection={handleItemSelection} 
-          selectedItems={selectedItems} 
-          formError={formError} 
+        <Extra handleItemSelection={handleItemSelection} selectedItems={selectedItems} formError={formError} />
+        <Information
+          sentData={{ textName, orderNote, totalPrice, tickness, selectedItems, size, quantity }}
+          formError={formError}
         />
-        <Information sentData={{ textName, orderNote, totalPrice, tickness, selectedItems, size, quantity }} formError={formError} />
-        <Order 
-          totalPrice={totalPrice} 
-          countUp={countUp} 
-          countDown={countDown} 
-          quantity={quantity} 
+        <Order
+          totalPrice={totalPrice}
+          countUp={countUp}
+          countDown={countDown}
+          quantity={quantity}
           submitHandler={submitHandler}
         />
       </form>
