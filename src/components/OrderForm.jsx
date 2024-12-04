@@ -1,7 +1,3 @@
-Paylaş
-
-
-Şunu dedin:
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -90,4 +86,4 @@ const OrderForm = () => {
   );
 };
 
-export default OrderForm; 
+export default OrderForm;

@@ -1,21 +1,26 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import OrderForm from "./components/OrderForm";
-import ReceivingOrders from "./components/ReceivingOrders";
+import Information from "./components/Information";
 
 function App() {
   const [sentData, setSentData] = useState(null);
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pizza" element={<OrderForm setSentData={setSentData} />} />
-        <Route path="/receiving-orders" element={<ReceivingOrders sentData={sentData} />} />
-      </Routes>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/pizza">
+          <OrderForm setSentData={setSentData} />
+        </Route>
+        <Route path="/information">
+          <Information sentData={sentData} />
+        </Route>
+      </Switch>
     </Router>
   );
 }
-
-export default App;
+export default App;  
