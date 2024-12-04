@@ -9,7 +9,6 @@ function App() {
 
   return (
     <Router>
-        <Route exact path="/" component={Home} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pizza" element={<OrderForm setSentData={setSentData} />} />
