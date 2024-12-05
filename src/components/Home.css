@@ -1,60 +1,176 @@
 .home-image {
-    position: relative;
-  }
-  
-  .firsat {
-    color: #fdc913;
-    margin-top: 30px;
-    margin-bottom: -1rem;
-    text-align: center;
-    font-size: 25px;
-    font-family: "Satisfy", sans-serif;
-  }
-  
-  .fullscreen-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .overlay {
-    position: absolute;
-    top: 24%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-  }
-  
-  .overlay h1 {
-    width: 100%;
-    font-size: 50px;
-    font-weight: lighter;
-    margin-top: 3%;
-  }
-  
-  .overlay button {
-    padding: 8px 40px;
-    font-size: 1em;
-    background-color: #fdc913;
-    color: black;
-    border: none;
-    border-radius: 30px;
-  }
-  
-  .overlay button a {
-    text-decoration: none;
-    color: black;
-  }
-  
-  span {
-    display: inline-block;
-    margin-right: 60px;
-  }
-  
-  .card-p {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 15px;
-  }
-  
+  position: relative;
+}
+
+.firsat {
+  color: #fdc913;
+  margin-top: 30px;
+  margin-bottom: -1rem;
+  text-align: center;
+  font-size: 25px;
+  font-family: "Satisfy", sans-serif;
+}
+
+.fullscreen-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.overlay h1 {
+  width: 100%;
+  font-size: 50px;
+  font-weight: lighter;
+  margin-top: 3%;
+}
+
+.overlay button {
+  padding: 8px 40px;
+  font-size: 1em;
+  background-color: #fdc913;
+  color: black;
+  border: none;
+  border-radius: 30px;
+}
+
+.overlay button a {
+  text-decoration: none;
+  color: black;
+}
+
+span {
+  display: inline-block;
+  margin-right: 60px;
+}
+
+.card-p {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+/* New Styles for Layout */
+.menu-header {
+  color: #ce2829;
+  font-size: 25px;
+  font-family: "Satisfy", sans-serif;
+  margin-bottom: 20px;
+}
+
+.menu-title {
+  color: #292929;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.menu-nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.menu-button {
+  background-color: white;
+  padding: 5px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  border: 2px solid transparent;
+}
+
+.menu-button:hover {
+  background-color: #292929;
+  color: white;
+  border-color: #292929;
+}
+
+.menu-button img {
+  margin-right: 10px;
+}
+
+.card-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.styled-card {
+  width: 21rem;
+  height: 27rem;
+  border-color: #faf7f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.styled-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.styled-card h5 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.styled-card span {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.styled-card .card-p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 30px;
+}
+
+.banner img {
+  width: 500px;
+  height: 400px;
+  border-radius: 8px;
+}
+
+.banner-text {
+  text-align: left;
+  color: #faf7f2;
+}
+
+.banner-text h2 {
+  font-size: 40px;
+  font-family: "Quattrocento", sans-serif;
+}
+
+.banner-text p {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.banner-text a {
+  background-color: #ce2829;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+}
+
+.banner-text a:hover {
+  background-color: #a02121;
+}

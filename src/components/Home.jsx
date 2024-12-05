@@ -19,50 +19,43 @@ import Kart1 from "../assets/cta/kart-1.png";
 import Kart2 from "../assets/cta/kart-2.png";
 import Kart3 from "../assets/cta/kart-3.png";
 
-const AltBanner = styled.div`
+const AltBannerContainer = styled.div`
   background-color: #faf7f2;
+  padding: 30px 0;
 `;
 
-const StyledNav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 120px;
-  margin-top: 35px;
-  margin-bottom: 10px;
+const MenuHeader = styled.p`
+  color: #ce2829;
+  font-size: 25px;
+  font-family: "Satisfy", sans-serif;
+  margin-bottom: 20px;
 `;
 
-const StyledNavItem = styled.div`
+const MenuTitle = styled.h2`
   color: #292929;
   font-weight: bold;
-  gap: 30px;
-  img {
-    margin-right: 5px;
-  }
-`;
-const PrefferedMenu = styled.p`
-  color: #ce2829;
-  margin-top: 30px;
-  text-align: center;
-  font-size: 25px;
-  font-family: "Satisfy", sans-serif !important;
-`;
-const Lezzetler = styled.h2`
-color: #292929
-margin-top: 30px;
-font-weight: bold;
+  margin-bottom: 30px;
 `;
 
-const Button = styled.button`
+const MenuNav = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+`;
+
+const MenuButton = styled.button`
   background-color: white;
   padding: 5px 20px;
   border-radius: 30px;
+  display: flex;
+  align-items: center;
+  border: 2px solid transparent;
 
-  &:hover,
-  &:focus,
-  &:active {
+  &:hover {
     background-color: #292929;
-    border-color: #292929;
     color: white;
+    border-color: #292929;
   }
 
   img {
@@ -70,58 +63,35 @@ const Button = styled.button`
   }
 `;
 
-const StyledCardContainer = styled.div`
+const CardContainer = styled.div`
   display: flex;
   gap: 20px;
   justify-content: center;
   margin-top: 30px;
+  flex-wrap: wrap;
 `;
 
-const StyledCardTitle = styled.p`
-  text-align: left;
-  font-weight: bold;
-  color: #292929;
-`;
+const StyledCard = styled(Card)`
+  width: 21rem;
+  height: 27rem;
+  border-color: #faf7f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-const SiparisButton = styled.button`
-  background-color: #faf7f2;
-  padding: 8px 40px;
-  font-size: 0.8em;
-  border: none;
-  border-radius: 30px;
-  a {
-    color: #ce2829;
-    text-decoration: none;
-    -webkit-text-stroke: medium;
+  img {
+    width: 100%;
+    border-radius: 10px;
   }
-`;
 
-const SiparisButton1 = styled.button`
-  background-color: #faf7f2;
-  padding: 3px 30px;
-  font-size: 0.8em;
-  border: none;
-  border-radius: 30px;
-  margin-left: -65px;
-  a {
-    color: #ce2829;
-    text-decoration: none;
-    -webkit-text-stroke: medium;
+  .card-p {
+    font-size: 18px;
+    margin-top: 10px;
   }
-`;
 
-const SiparisButton2 = styled.button`
-  background-color: #faf7f2;
-  padding: 3px 30px;
-  font-size: 0.8em;
-  border: none;
-  border-radius: 30px;
-  margin-left: -65px;
-  margin-bottom: 38px;
-  a {
-    color: #ce2829;
-    text-decoration: none;
-    -webkit-text-stroke: medium;
+  span {
+    font-size: 14px;
+    margin-right: 5px;
   }
 `;
 
@@ -129,8 +99,8 @@ const Banner = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 50px;
-  margin-right: 2%;
-  margin-left: 20%;
+  gap: 30px;
+
   img {
     width: 500px;
     height: 400px;
@@ -138,73 +108,30 @@ const Banner = styled.div`
   }
 `;
 
-const Banner2 = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column-reverse;
-  margin-top: 50px;
-  margin-left: auto;
-
-  img {
-    margin-bottom: 20px;
-    width: 450px;
-    height: 190px;
-    border-radius: 8px;
-  }
-`;
-
-const BannerImage1 = styled.div`
-  margin-right: 60px;
-  position: absolute;
-  margin-right: 16%;
-  margin-top: 4%;
+const BannerText = styled.div`
   text-align: left;
   color: #faf7f2;
-  text-weight: bold;
-  p {
-    font-size: 16px;
-  }
+
   h2 {
     font-size: 40px;
-    font-family: "Quattrocento";
+    font-family: "Quattrocento", sans-serif;
   }
-`;
-
-const BannerImage2 = styled.div`
-  margin-left: 60px;
-  position: absolute;
-  margin-top: 18%;
-  margin-right: 20px;
 
   p {
-    color: #black;
-    font-size: 20px;
-    width: 154px;
-    height: 58px;
-    margin-left: -25px;
-    margin-top: -230%;
-    font-weight: bold;
-  }
-`;
-
-const BannerImage3 = styled.div`
-  margin-left: 60px;
-  position: absolute;
-  margin-top: 18%;
-  margin-right: 20px;
-  p {
-    color: #faf7f2;
-    font-size: 20px;
-    width: 150px;
-    height: 50px;
-    margin-left: -25px;
-    margin-bottom: 45%;
-    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
   }
 
-  span {
-    color: #ce2829;
-    font-weight: bold;
+  a {
+    background-color: #ce2829;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #a02121;
+    }
   }
 `;
 
@@ -216,159 +143,79 @@ export default function Home() {
         <div className="overlay">
           <img src={logo} alt="Logo" />
           <p className="firsat">fırsatı kaçırma</p>
-          <h1>KOD ACIKTIRIR PİZZA,DOYURUR</h1>
+          <h1>KOD ACIKTIRIR PİZZA, DOYURUR</h1>
           <button>
             <Link to="/order">ACIKTIM</Link>
           </button>
         </div>
       </div>
 
-      <StyledNav pills>
-        <StyledNavItem>
-          <img alt="Kore" src={kore} />
-          YENİ! Kore
-        </StyledNavItem>
-        <StyledNavItem>
-          <img alt="Pizza" src={pizza} /> Pizza
-        </StyledNavItem>
-        <StyledNavItem>
-          <img alt="Burger" src={burger} /> Burger
-        </StyledNavItem>
-        <StyledNavItem>
-          <img alt="Burger" src={kızartmalar} /> Kızartmalar
-        </StyledNavItem>
-        <StyledNavItem>
-          <img alt="Burger" src={fastfood} />
-          Fast food
-        </StyledNavItem>
-        <StyledNavItem>
-          <img alt="Burger" src={gazlı} />
-          Gazlı İçecek
-        </StyledNavItem>
-      </StyledNav>
-
-      <div style={{ display: "flex", maxInlineSize: "fit-content" }}>
-        <Banner>
-          <img alt="Kart1" src={Kart1} />
-          <BannerImage1>
-            <h2>Özel Lezzetus</h2>
-            <p>Position Absolute Acı Pizza</p>
-            <SiparisButton>
-              <Link to="/order">SİPARİŞ VER</Link>
-            </SiparisButton>
-          </BannerImage1>
-        </Banner>
-        <Banner2>
-          <img alt="Kart2" src={Kart2} />
-          <BannerImage2>
-            <p>Hackathlon Burger Menü</p>
-            <SiparisButton1>
-              <Link to="/order">SİPARİŞ VER</Link>
-            </SiparisButton1>
-          </BannerImage2>
-
-          <img alt="Kart3" src={Kart3} />
-          <BannerImage3>
-            <p>
-              <span>Çoooook</span> hızlı npm gibi kurye
-            </p>
-            <SiparisButton2>
-              <Link to="/order">SİPARİŞ VER</Link>
-            </SiparisButton2>
-          </BannerImage3>
-        </Banner2>{" "}
-      </div>
-
-      <AltBanner>
-        <PrefferedMenu>en çok paketlenen menüler</PrefferedMenu>
-        <Lezzetler>Acıktıran Kodlara Doyuran Lezzetler</Lezzetler>
-
-        <StyledNav pills>
-          <Button>
+      <AltBannerContainer>
+        <MenuHeader>en çok paketlenen menüler</MenuHeader>
+        <MenuTitle>Acıktıran Kodlara Doyuran Lezzetler</MenuTitle>
+        <MenuNav>
+          <MenuButton>
             <img alt="Kore" src={kore} />
             Ramen
-          </Button>
-          <Button>
+          </MenuButton>
+          <MenuButton>
             <img alt="Pizza" src={pizza} />
             Pizza
-          </Button>
-          <Button>
+          </MenuButton>
+          <MenuButton>
             <img alt="Burger" src={burger} />
             Burger
-          </Button>
-          <Button>
-            <img alt="Burger" src={kızartmalar} />
+          </MenuButton>
+          <MenuButton>
+            <img alt="Kızartmalar" src={kızartmalar} />
             French fries
-          </Button>
-          <Button>
-            <img alt="Burger" src={fastfood} />
+          </MenuButton>
+          <MenuButton>
+            <img alt="Fastfood" src={fastfood} />
             Fast food
-          </Button>
-          <Button>
-            <img alt="Burger" src={gazlı} />
+          </MenuButton>
+          <MenuButton>
+            <img alt="Gazlı İçecek" src={gazlı} />
             Soft drinks
-          </Button>
-        </StyledNav>
+          </MenuButton>
+        </MenuNav>
 
-        <StyledCardContainer style={{ marginBottom: "30px" }}>
-          <Card
-            style={{
-              width: "21rem",
-              height: "27rem",
-              borderColor: "#FAF7F2",
-            }}
-          >
+        <CardContainer>
+          <StyledCard>
             <img alt="Sample" src={food1} />
             <CardBody>
-              <StyledCardTitle tag="h5">Terminal Pizza</StyledCardTitle>
+              <h5>Terminal Pizza</h5>
               <span>4.9</span>
               <span>(200)</span>
               <p className="card-p">
                 <b>85.5 ₺</b>
               </p>
             </CardBody>
-          </Card>
-          <Card
-            style={{
-              width: "21rem",
-              height: "27rem",
-              borderColor: "#FAF7F2",
-            }}
-          >
+          </StyledCard>
+          <StyledCard>
             <img alt="Sample" src={food2} />
             <CardBody>
-              <StyledCardTitle tag="h5">
-                Position Absolute Acı Pizza
-              </StyledCardTitle>
+              <h5>Position Absolute Acı Pizza</h5>
               <span>4.9</span>
               <span>(200)</span>
               <p className="card-p">
                 <b>85.5 ₺</b>
               </p>
             </CardBody>
-          </Card>
-
-          <Card
-            style={{
-              width: "21rem",
-              height: "27rem",
-              borderColor: "#FAF7F2",
-            }}
-          >
+          </StyledCard>
+          <StyledCard>
             <img alt="Sample" src={food3} />
             <CardBody>
-              <StyledCardTitle tag="h5">
-                useEffect Tavuklu Burger
-              </StyledCardTitle>
+              <h5>useEffect Tavuklu Burger</h5>
               <span>4.9</span>
               <span>(200)</span>
               <p className="card-p">
                 <b>85.5 ₺</b>
               </p>
             </CardBody>
-          </Card>
-        </StyledCardContainer>
-      </AltBanner>
+          </StyledCard>
+        </CardContainer>
+      </AltBannerContainer>
     </>
   );
 }
