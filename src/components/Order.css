@@ -17,7 +17,7 @@ body {
 .logoImage {
   display: block;
   width: 100%;
-  max-width: 200px; /* Reduced to prevent stretching */
+  max-width: 200px;
   height: auto;
   margin: 0 auto;
 }
@@ -31,7 +31,7 @@ body {
   margin: 120px auto;
   text-align: center;
   width: 100%;
-  max-width: 500px; /* Ensure the content does not stretch too wide */
+  max-width: 500px;
   line-height: 1.9rem;
 }
 
@@ -39,16 +39,16 @@ body {
   padding: 3px 4px;
   font-size: 0.9rem;
   width: 100%;
-  max-width: 300px; /* Limit the width to avoid being too large */
+  max-width: 300px;
 }
 
 .pizzaName {
   margin-top: 20px;
-  font-size: 1.5rem; /* Adjusted for better visibility */
+  font-size: 1.5rem;
 }
 
 form {
-  margin-top: 20px; /* Reduced space to align content better */
+  margin-top: 20px;
   width: 100%;
   text-align: left;
 }
@@ -58,8 +58,7 @@ input.isim {
   width: 100%;
 }
 
-p,
-h4 {
+p, h4 {
   text-align: left;
   margin: 0;
 }
@@ -80,7 +79,7 @@ h4 {
 
 .btn:disabled,
 .btn.disabled {
-  background-color: #e0e0e0; /* A slightly greyed out color for disabled state */
+  background-color: #e0e0e0;
   color: #a0a0a0;
 }
 
@@ -101,11 +100,11 @@ h4 {
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 20px;
-  margin-left: 0; /* Reset any left margin */
+  margin-left: 0;
 }
 
 .topping-item {
-  width: 48%; /* Adjusted for better wrapping */
+  width: 48%;
   margin-bottom: 10px;
 }
 
@@ -174,19 +173,15 @@ h4 {
 @media (max-width: 768px) {
   .order-page {
     width: 90%;
-    max-width: 400px; /* Smaller container for smaller screens */
+    max-width: 400px;
   }
 
   .logoImage {
     max-width: 150px;
   }
 
-  .topping-container {
-    margin-left: 0;
-  }
-
   .control__btn {
-    font-size: 16px; /* Adjusted button size for smaller screens */
+    font-size: 16px;
   }
 
   .counter {
@@ -206,7 +201,7 @@ h4 {
   }
 
   .order-page {
-    margin-top: 50px; /* Reduced space on very small screens */
+    margin-top: 50px;
   }
 
   .btn {
