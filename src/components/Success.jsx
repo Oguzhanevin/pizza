@@ -1,4 +1,4 @@
-import logo from "../assets/logo.svg";
+import logo from "../assets/pictures/logo.svg";
 import "./Success.css";
 import SiparisToplami from "./Order.jsx";
 

@@ -1,10 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 import "./Footer.css";
+
+// Resim importları
 import footerlogo from "../assets/insta/logo-footer.svg";
 import icon1 from "../assets/icons/icon-1.png";
 import icon2 from "../assets/icons/icon-2.png";
 import icon3 from "../assets/icons/icon-3.png";
-import styled from "styled-components";
 import Instagram1 from "../assets/insta/li-0.png";
 import Instagram2 from "../assets/insta/li-1.png";
 import Instagram3 from "../assets/insta/li-2.png";
@@ -12,14 +14,17 @@ import Instagram4 from "../assets/insta/li-3.png";
 import Instagram5 from "../assets/insta/li-4.png";
 import Instagram6 from "../assets/insta/li-5.png";
 
+// Footer stil bileşenleri
 const FooterLeft = styled.div`
   display: inline-flex;
   margin-bottom: 10px;
   vertical-align: top;
+  
   img {
     width: 25px;
     height: 25px;
   }
+
   p {
     margin-left: 10px;
     color: white;
@@ -38,6 +43,7 @@ const FooterCenter = styled.div`
     margin-bottom: 30px;
     color: white;
   }
+
   p {
     color: white;
   }
@@ -51,25 +57,28 @@ const FooterRight = styled.div`
   vertical-align: top;
 `;
 
+// Footer bileşeni
 export default function Footer() {
   return (
     <section className="footer">
+      {/* Sol Kısım */}
       <section className="footer-left">
         <img className="footer-logo" src={footerlogo} alt="Footer" />
         <FooterLeft>
-          <img className="footer-icon-1" src={icon1} alt="Logo" />
+          <img src={icon1} alt="Address Icon" />
           <p>341 Londonderry Road, Istanbul Türkiye</p>
         </FooterLeft>
         <FooterLeft>
-          <img className="footer-icon-1" src={icon2} alt="Logo" />
+          <img src={icon2} alt="Email Icon" />
           <p>aciktim@teknolojikyemekler.com</p>
         </FooterLeft>
         <FooterLeft>
-          <img className="footer-icon-1" src={icon3} alt="Logo" />
+          <img src={icon3} alt="Phone Icon" />
           <p>+90 216 123 45 67</p>
         </FooterLeft>
       </section>
 
+      {/* Ortada Menüler */}
       <section className="footer-center">
         <FooterCenter>
           <h5>SICCACIK MENÜLER</h5>
@@ -82,6 +91,7 @@ export default function Footer() {
         </FooterCenter>
       </section>
 
+      {/* Sağ Kısım Instagram Resimleri */}
       <section className="footer-right">
         <p>Instagram</p>
         <FooterRight>
