@@ -1,0 +1,65 @@
+.home-container {
+    padding: 0;
+  }
+  
+  .home-logo {
+    max-width: 100%;
+  }
+  
+  .home-header-section {
+    margin-top: 20%;
+  }
+  
+  .h4-home-1,
+  .h2-home {
+    color: white;
+  }
+  
+  .button-banner {
+    padding: 0.5rem 1.5rem;
+    background-color: #ce2829;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .icon-section {
+    margin-top: 3rem;
+  }
+  
+  .home-icons {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .icon-text {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .main-section {
+    margin-top: 5rem;
+  }
+  
+  .campaign-card-title {
+    font-family: "Quattrocento", sans-serif;
+    font-weight: bold;
+  }
+  
+  .button-campaign {
+    padding: 0.5rem 1.5rem;
+    background-color: #ce2829;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .h4-home-2,
+  .h3-home {
+    text-align: center;
+  }
+  
+  .menu-cards {
+    margin-top: 2rem;
+  }
+  

@@ -1,0 +1,63 @@
+.success-container {
+    padding: 0;
+  }
+  
+  .success-banner {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .h4-success {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .h2-success {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .success-divider {
+    width: 50%;
+    border: 1px solid white;
+    opacity: 1;
+    margin: 1rem auto;
+  }
+  
+  .success-detail {
+    color: white;
+    width: 20rem;
+    margin: 0 auto;
+  }
+  
+  .order-details span {
+    font-weight: 600;
+  }
+  
+  .order-summary-card {
+    width: 18rem;
+    background-color: #ce2829;
+    border: 1px solid white;
+    color: white;
+    margin-top: 2rem;
+  }
+  
+  .order-summary-body {
+    padding: 2.5rem;
+  }
+  
+  .order-summary-card .text-right {
+    text-align: right;
+  }
+  
+  .order-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .my-2 {
+    margin-top: 1rem;
+  }
+  

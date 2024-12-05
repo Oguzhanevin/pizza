@@ -1,99 +1,41 @@
-.orderform-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #fafaf9;
-}
-
-.orderform {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 600px;
-  width: 100%;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.orderform h2 {
-  font-size: 2rem;
-  color: #1f2937;
-  font-family: "Barlow", sans-serif;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.orderform .error-text {
-  color: #dc2626;
-  font-size: 0.875rem;
-  text-align: center;
-}
-
-.orderform .order-summary {
-  display: flex;
-  justify-content: space-between;
-  font-family: "Barlow", sans-serif;
-  font-size: 1rem;
-  color: #6b7280;
-}
-
-.orderform .order-summary .total-price {
-  font-weight: bold;
-  font-size: 1.125rem;
-  color: #1f2937;
-}
-
-.orderform button {
-  background-color: #2563eb;
-  color: #fff;
-  font-size: 1rem;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
-}
-
-.orderform button:hover {
-  background-color: #1d4ed8;
-}
-
-.orderform .button-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.orderform .quantity-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.orderform .quantity-controls button {
-  background-color: #f3f4f6;
-  color: #1f2937;
-  border: 1px solid #e5e7eb;
-  padding: 5px 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-radius: 5px;
-}
-
-.orderform .quantity-controls button:hover {
-  background-color: #e5e7eb;
-}
-
-.orderform .quantity-controls p {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #1f2937;
-  margin: 0;
-}
-
-.orderform .divider {
-  margin: 1.5rem 0;
-  border-top: 1px solid #d1d5db;
-}
+.order-form {
+    padding: 20px;
+    background-color: #faf7f2;
+    border-radius: 10px;
+  }
+  
+  .order-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .order-summary button {
+    background-color: #fdc913;
+    border: none;
+    padding: 10px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .order-summary span {
+    padding: 10px;
+    font-size: 1.2rem;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  textarea,
+  input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
