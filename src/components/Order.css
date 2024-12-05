@@ -1,20 +1,24 @@
 body {
   font-family: "Barlow", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .header {
   background-color: #ce2829;
   padding: 1rem;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1000;
 }
 
 .logoImage {
   display: block;
-  width: 1500px;
-  height: 50px;
+  width: 100%;
+  max-width: 200px; /* Reduced to prevent stretching */
+  height: auto;
   margin: 0 auto;
 }
 
@@ -24,41 +28,45 @@ body {
 }
 
 .order-page {
-  margin: 100px auto;
+  margin: 120px auto;
   text-align: center;
-  width: 500px;
+  width: 100%;
+  max-width: 500px; /* Ensure the content does not stretch too wide */
   line-height: 1.9rem;
 }
 
 .isim {
   padding: 3px 4px;
   font-size: 0.9rem;
-  width: 50%;
+  width: 100%;
+  max-width: 300px; /* Limit the width to avoid being too large */
 }
 
 .pizzaName {
   margin-top: 20px;
+  font-size: 1.5rem; /* Adjusted for better visibility */
 }
 
 form {
-  margin-top: 150px;
+  margin-top: 20px; /* Reduced space to align content better */
   width: 100%;
   text-align: left;
-  margin-left: 60%;
 }
 
 input.isim {
   font-size: 0.9rem;
-  width: 50%;
+  width: 100%;
 }
 
 p,
 h4 {
   text-align: left;
+  margin: 0;
 }
 
 .btn {
-  margin-left: 300px;
+  margin-left: 50%;
+  transform: translateX(-50%);
   padding: 3px 60px;
   font-size: 1em;
   font-weight: bold;
@@ -67,12 +75,13 @@ h4 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn:disabled,
 .btn.disabled {
-  background-color: #fdc913;
-  color: black;
+  background-color: #e0e0e0; /* A slightly greyed out color for disabled state */
+  color: #a0a0a0;
 }
 
 .boyut-card,
@@ -90,13 +99,14 @@ h4 {
 .topping-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 2rem;
-  margin-left: -60%;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: 0; /* Reset any left margin */
 }
 
 .topping-item {
-  width: 27%;
+  width: 48%; /* Adjusted for better wrapping */
+  margin-bottom: 10px;
 }
 
 .siparis-notu {
@@ -110,7 +120,9 @@ h4 {
 }
 
 .siparis-toplami span {
-  margin-left: 150px;
+  margin-left: 0;
+  color: #ce2829;
+  font-weight: bold;
 }
 
 .toplam {
@@ -122,6 +134,7 @@ h4 {
   flex-direction: row;
   justify-content: space-between;
   width: 180px;
+  margin: 20px auto;
 }
 
 .control__btn {
@@ -146,6 +159,7 @@ h4 {
   padding: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .btn-container {
@@ -154,4 +168,54 @@ h4 {
   column-gap: 20px;
   padding: 10px;
   border-radius: 4px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .order-page {
+    width: 90%;
+    max-width: 400px; /* Smaller container for smaller screens */
+  }
+
+  .logoImage {
+    max-width: 150px;
+  }
+
+  .topping-container {
+    margin-left: 0;
+  }
+
+  .control__btn {
+    font-size: 16px; /* Adjusted button size for smaller screens */
+  }
+
+  .counter {
+    width: 100%;
+  }
+
+  .btn {
+    margin-left: 0;
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoImage {
+    max-width: 120px;
+  }
+
+  .order-page {
+    margin-top: 50px; /* Reduced space on very small screens */
+  }
+
+  .btn {
+    padding: 10px 30px;
+    font-size: 1em;
+  }
+
+  .counter__output {
+    font-size: 16px;
+    padding: 8px;
+  }
 }

@@ -1,15 +1,20 @@
 body {
   font-family: "Barlow", sans-serif !important;
+  margin: 0;
+  padding: 0;
 }
 
 .overlay-1 {
   background-color: #ce2829;
-  width: 225vh;
-  height: 115vh;
+  width: 100%;
+  min-height: 100vh;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .success-image {
@@ -18,16 +23,16 @@ body {
 
 .firsat2 {
   color: #fdc913;
-  font-size: 15px;
+  font-size: 1.2rem; /* Adjusted for better readability */
   text-align: center;
   font-family: "Satisfy", sans-serif !important;
 }
 
 .overlay-1 h4 {
   font-weight: lighter;
-  font-size: 25px;
+  font-size: 2rem; /* Adjusted font size for better visibility */
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .overlay-1 div {
@@ -39,9 +44,10 @@ body {
 .siparis-toplami-success {
   border: 2px solid white;
   padding: 30px 15px 20px;
-  width: 18rem;
-  margin-top: 80px;
-  margin-left: 34rem;
+  width: 100%;
+  max-width: 350px; /* Ensures a reasonable width for the container */
+  margin-top: 40px;
+  text-align: center;
 }
 
 .siparis-toplami-success h4,
@@ -51,9 +57,62 @@ body {
 }
 
 .siparis-toplami-success span {
-  margin-left: 150px;
+  color: #fdc913; /* Highlight the total with a different color */
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
 }
 
 .toplam-success {
   color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .overlay-1 {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .siparis-toplami-success {
+    width: 90%;
+    max-width: 350px;
+    margin-left: 0; /* Centering the box */
+    margin-top: 30px;
+  }
+
+  .success-image {
+    width: 80%; /* Make image responsive */
+    margin: 30px 0;
+  }
+
+  .firsat2 {
+    font-size: 1rem; /* Adjust font size for smaller screens */
+  }
+
+  .overlay-1 h4 {
+    font-size: 1.5rem; /* Smaller heading size for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay-1 {
+    padding: 10px;
+  }
+
+  .siparis-toplami-success {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .firsat2 {
+    font-size: 0.9rem;
+  }
+
+  .overlay-1 h4 {
+    font-size: 1.3rem;
+  }
 }
