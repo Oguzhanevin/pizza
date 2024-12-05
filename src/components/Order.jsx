@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Order.css";
-import logo from "../assets/logo.svg";
+import logo from "../assets/pictures/logo.svg";
 import axios from "axios";
 import { Button, Card } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";

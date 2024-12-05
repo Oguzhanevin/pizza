@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import "./Home.css";
-import home from "../assets/home-banner.png";
-import logo from "../assets/logo.svg";
+import home from "../assets/pictures/home-banner.png";
+import logo from "../assets/pictures/logo.svg";
 import { Link } from "react-router-dom";
 import kore from "../assets/icons/1.svg";
 import pizza from "../assets/icons/2.svg";
