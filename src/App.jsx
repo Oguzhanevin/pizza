@@ -1,36 +1,25 @@
-
 import reactLogo from './assets/react.svg'
-import workintech from '/workintech.svg'
 import './App.css'
 import Header from './components/header'
 import HomePage from './components/homepage'
-import { Route, Switch } from 'react-router-dom';
-
-
+import { Route, Routes } from 'react-router-dom'; // Switch yerine Routes kullanılıyor
 import Form from './components/form'
 import OnayPage from './components/onaypage'
 import { useState } from 'react'
+
 function App() {
-  
   const [mevcutSipariş, setMevcutSipariş] = useState(null);
+
   return (
-    
     <>
-    
-    <Header />
-            <Switch>
-                <Route path='/' exact>
-                    <HomePage />
-                </Route>
-                <Route path='/Form' exact>
-                    <Form setMevcutSipariş={setMevcutSipariş} />
-                </Route>
-                <Route path='/Onay' exact>
-                    <OnayPage mevcutSipariş={mevcutSipariş} />
-                </Route>
-            </Switch>
+      <Header />
+      <Routes> {/* Switch yerine Routes kullanıyoruz */}
+        <Route path='/' element={<HomePage />} /> {/* exact kaldırıldı, element kullanıldı */}
+        <Route path='/Form' element={<Form setMevcutSipariş={setMevcutSipariş} />} />
+        <Route path='/Onay' element={<OnayPage mevcutSipariş={mevcutSipariş} />} />
+      </Routes>
     </>
   )
 }
 
-export default App
+export default App;
