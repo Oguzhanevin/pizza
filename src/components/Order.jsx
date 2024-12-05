@@ -6,41 +6,52 @@ import { Button, Card } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Footer from "./Footer";
 
-const Order = ({ spars }) => {
-  const [orderData, setOrderData] = useState({
-    name: "",
-    size: "",
-    hamurKalinligi: "",
-    malzemeler: [],
-    notlar: "",
-  });
+const Order = ({spars}) => {
+  const [name, setName] = useState("");
+  const [size, setSize] = useState("");
+  const [hamurKalinliği, setHamurKalinliği] = useState("");
+  const [malzemeler, setMalzemeler] = useState([]);
+  const [notlar, setNotlar] = useState("");
+  const [isValid, setIsValid] = useState(false);
   const [productCount, setProductCount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [isValid, setIsValid] = useState(false);
 
   const malzemePrice = 5;
-  const totalMalzemePrice = orderData.malzemeler.length * malzemePrice;
+  const totalMalzemePrice = malzemeler.length * malzemePrice;
 
+  // Herhangi bir şey değiştiğinde totalPrice'ı güncelle
   useEffect(() => {
     const newTotalPrice = totalMalzemePrice + productCount * 85.5;
     setTotalPrice(newTotalPrice);
-  }, [orderData.malzemeler, productCount, totalMalzemePrice]);
+  }, [malzemeler, productCount, totalMalzemePrice]);
 
   useEffect(() => {
-    const { size, hamurKalinligi, name, malzemeler } = orderData;
-    const isFormValid = productCount > 0 && size && hamurKalinligi && name.length >= 3 && malzemeler.length >= 4 && malzemeler.length <= 10;
+    const isFormValid = !(
+      !productCount ||
+      !size ||
+      !hamurKalinliği ||
+      name.length < 3 ||
+      malzemeler.length < 4 ||
+      malzemeler.length > 10
+    );
     setIsValid(isFormValid);
-  }, [orderData, productCount]);
+  }, [size, hamurKalinliği, name, malzemeler, productCount]);
 
   const history = useHistory();
 
-  const playLoud = { ...orderData };
+  const playLoud = {
+    name: name,
+    size: size,
+    hamur: hamurKalinliği,
+    malzemeler: malzemeler,
+    not: notlar,
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!isValid) return;
-
-    spars({ ...orderData, totalPrice, totalMalzemePrice });
+  
+    spars({ size: size, hamurKalinliği: hamurKalinliği, malzemeler: malzemeler, totalPrice: totalPrice, totalMalzemePrice:totalMalzemePrice});
     axios
       .post("https://reqres.in/api/pizza", playLoud)
       .then((response) => {
@@ -54,111 +65,251 @@ const Order = ({ spars }) => {
         console.error(error);
       });
   };
+  
+  const increaseCount = () => {
+    setProductCount((prevCount) => prevCount + 1);
+  };
 
-  const increaseCount = () => setProductCount(prevCount => prevCount + 1);
-  const decreaseCount = () => setProductCount(prevCount => prevCount > 0 ? prevCount - 1 : 0);
+  const decreaseCount = () => {
+    if (productCount > 0) {
+      setProductCount((prevCount) => prevCount - 1);
+    }
+  };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setOrderData((prevState) => ({ ...prevState, [name]: value }));
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleSizeChange = (e) => {
+    setSize(e.target.value);
+  };
+
+  const handleHamurChange = (e) => {
+    setHamurKalinliği(e.target.value);
   };
 
   const handleMalzemelerChange = (e) => {
     const malzeme = e.target.value;
-    setOrderData((prevState) => ({
-      ...prevState,
-      malzemeler: prevState.malzemeler.includes(malzeme)
-        ? prevState.malzemeler.filter((item) => item !== malzeme)
-        : [...prevState.malzemeler, malzeme],
-    }));
+    if (malzemeler.includes(malzeme)) {
+      setMalzemeler(malzemeler.filter((item) => item !== malzeme));
+    } else {
+      setMalzemeler([...malzemeler, malzeme]);
+    }
+  };
+
+  const handleNotlarChange = (e) => {
+    setNotlar(e.target.value);
+  };
+
+  const handleSiparisToplami = (e) => {
+    setTotalPrice(e.target.value);
   };
 
   return (
     <div className="order-page">
-      <header className="header">
-        <img className="logoImage" src={logo} alt="Logo" />
-        <p>Anasayfa- <strong>Sipariş Oluştur</strong></p>
-      </header>
+      <div className="header">
+        <header>
+          <img className="logoImage" src={logo} alt="Logo" />
+          <p>
+            Anasayfa- <strong>Sipariş Oluştur</strong>
+          </p>
+        </header>
+      </div>
 
       <form onSubmit={handleSubmit}>
         <input
           className="isim"
           type="text"
-          name="name"
           placeholder="Minimum 3 karakter olacak şekilde isminizi giriniz.."
           minLength="3"
-          value={orderData.name}
-          onChange={handleInputChange}
+          value={name}
+          onChange={handleNameChange}
           data-cy="isim-input"
         />
 
         <h4 className="pizzaName">Position Absolute Acı Pizza</h4>
-        <p style={{ display: "inline-block", marginTop: "20px", marginRight: "200px", fontSize: "25px" }}>
+        <p
+          style={{
+            display: "inline-block",
+            marginTop: "20px",
+            marginRight: "200px",
+            fontSize: "25px",
+          }}
+        >
           <b>85.5 ₺</b>
         </p>
-        <span style={{ display: "inline-block", marginRight: "110px" }}>4.9</span>
+        <span style={{ display: "inline-block", marginRight: "110px" }}>
+          4.9
+        </span>
         <span style={{ display: "inline-block" }}>(200)</span>
         <p className="pizzaDetail">
-          Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve diğer malzemelerle yapılan, yüksek sıcaklıkta pişirilen İtalyan kökenli bir yemektir.
+          Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı
+          pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli
+          diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun
+          ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak,
+          düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli
+          lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.
         </p>
-
         <div className="boyut-hamur">
-          <BoyutCard size={orderData.size} handleSizeChange={handleInputChange} />
-          <HamurCard hamurKalinliği={orderData.hamurKalinliği} handleHamurChange={handleInputChange} />
-        </div>
+          <BoyutCard size={size} handleSizeChange={handleSizeChange} />
 
-        <MalzemeCard malzemeler={orderData.malzemeler} handleMalzemelerChange={handleMalzemelerChange} />
-        <NoteCard notlar={orderData.notlar} handleNotlarChange={handleInputChange} />
+          <HamurCard
+            hamurKalinliği={hamurKalinliği}
+            handleHamurChange={handleHamurChange}
+          />
+        </div>
+        <MalzemeCard
+          malzemeler={malzemeler}
+          handleMalzemelerChange={handleMalzemelerChange}
+        />
+
+        <NoteCard notlar={notlar} handleNotlarChange={handleNotlarChange} />
 
         <div className="counter">
-          <button className="control__btn btn-1" style={{ fontSize: "30px", padding: "10px 13px", backgroundColor: "#FDC913" }} onClick={decreaseCount}>-</button>
-          <span className="counter__output" style={{ fontSize: "30px" }}>{productCount}</span>
-          <button className="control__btn btn-2" style={{ fontSize: "30px", padding: "10px 10px", backgroundColor: "#FDC913" }} onClick={increaseCount}>+</button>
+          <button
+            className="control__btn btn-1"
+            style={{
+              fontSize: "30px",
+              padding: "10px 13px",
+              backgroundColor: " #FDC913",
+            }}
+            onClick={decreaseCount}
+          >
+            -
+          </button>
+          <span className="counter__output" style={{ fontSize: "30px" }}>
+            {productCount}
+          </span>
+          <button
+            className="control__btn btn-2"
+            style={{
+              fontSize: "30px",
+              padding: "10px 10px",
+              backgroundColor: " #FDC913",
+            }}
+            onClick={increaseCount}
+          >
+            +
+          </button>
         </div>
 
-        <Card style={{ width: "18rem", marginLeft: "35vh", marginTop: "-55px", marginBottom: "10%", padding: "30px 11px 20px 15px" }}>
-          <SiparisToplami malzemeler={orderData.malzemeler} totalMalzemePrice={totalMalzemePrice} productCount={productCount} />
-          <Button className="order-contaButton" type="submit" style={{ padding: "10px 80px", backgroundColor: "#FDC913", color: "black", fontWeight: "bold" }} disabled={!isValid} data-cy="submit-input">SİPARİŞ VER</Button>
+        <Card
+          style={{
+            width: "18rem",
+            marginLeft: "35vh",
+            marginTop: "-55px",
+            marginBottom: "10%",
+            padding: "30px 11px 20px 15px",
+          }}
+        >
+          <SiparisToplami
+            malzemeler={malzemeler}
+            totalMalzemePrice={totalMalzemePrice}
+            productCount={productCount}
+            handleSiparisToplami={handleSiparisToplami}
+          />
+          <Button
+            className="order-contaButton"
+            type="submit"
+            onSubmit={handleSubmit}
+            style={{
+              padding: "10px 80px",
+              backgroundColor: "#FDC913",
+              color: "black",
+              fontSize: "bold",
+            }}
+            disabled={!isValid}
+            data-cy="submit-input"
+          >
+            SİPARİŞ VER
+          </Button>
         </Card>
       </form>
     </div>
   );
 };
 
-const BoyutCard = ({ size, handleSizeChange }) => (
-  <div className="boyut-card">
-    <h4>Boyut Seç<span className="yildiz">*</span></h4>
-    {["Küçük", "Orta", "Büyük"].map((sizeOption) => (
-      <label key={sizeOption}>
+const BoyutCard = ({ size, handleSizeChange }) => {
+  return (
+    <div className="boyut-card">
+      <h4>
+        Boyut Seç<span className="yildiz">*</span>
+      </h4>
+      <label>
         <input
           type="radio"
-          value={sizeOption}
-          checked={size === sizeOption}
+          value="Küçük"
+          checked={size === "Küçük"}
           onChange={handleSizeChange}
-          name="size"
         />
-        {sizeOption}
+        Küçük
       </label>
-    ))}
-    {size && <div className="secilen-boyut"><p>Seçilen Boyut: {size}</p></div>}
-  </div>
-);
+      <label>
+        <input
+          type="radio"
+          value="Orta"
+          checked={size === "Orta"}
+          onChange={handleSizeChange}
+        />
+        Orta
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="Büyük"
+          checked={size === "Büyük"}
+          onChange={handleSizeChange}
+        />
+        Büyük
+      </label>
+      {size && (
+        <div className="secilen-boyut">
+          <p>Seçilen Boyut: {size}</p>
+        </div>
+      )}
+    </div>
+  );
+};
 
-const HamurCard = ({ hamurKalinliği, handleHamurChange }) => (
-  <div className="hamur-card">
-    <h4>Hamur Seç<span className="yildiz">*</span></h4>
-    <select value={hamurKalinlığı} onChange={handleHamurChange} name="hamurKalinliği">
-      <option value="">Hamur Kalınlığı</option>
-      {["İnce", "Standart", "Kalın"].map((option) => (
-        <option key={option} value={option}>{option}</option>
-      ))}
-    </select>
-    {hamurKalinlığı && <div className="secilen-hamur"><p>Seçilen Hamur: {hamurKalinlığı}</p></div>}
-  </div>
-);
+const HamurCard = ({ hamurKalinliği, handleHamurChange }) => {
+  return (
+    <div className="hamur-card">
+      <h4>
+        Hamur Seç<span className="yildiz">*</span>
+      </h4>
+      <select value={hamurKalinliği} onChange={handleHamurChange}>
+        <option value="">Hamur Kalınlığı</option>
+        <option value="İnce">İnce</option>
+        <option value="Standart">Standart</option>
+        <option value="Kalın">Kalın</option>
+      </select>
+      {hamurKalinliği && (
+        <div className="secilen-hamur">
+          <p>Seçilen Hamur: {hamurKalinliği}</p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const MalzemeCard = ({ malzemeler, handleMalzemelerChange }) => {
-  const ingredients = ["Pepperoni", "Tavuk Izgara", "Mısır", "Sarımsak", "Ananas", "Sosis", "Soğan", "Sucuk", "Biber", "Kabak", "Kanada Jambonu", "Domates", "Jalepeno", "Mantar"];
+  const ingredients = [
+    "Pepperoni",
+    "Tavuk Izgara",
+    "Mısır",
+    "Sarımsak",
+    "Ananas",
+    "Sosis",
+    "Soğan",
+    "Sucuk",
+    "Biber",
+    "Kabak",
+    "Kanada Jambonu",
+    "Domates",
+    "Jalepeno",
+    "Mantar",
+  ];
+
   return (
     <div className="ek-malzeme">
       <h4>Ek Malzemeler</h4>
@@ -172,7 +323,7 @@ const MalzemeCard = ({ malzemeler, handleMalzemelerChange }) => {
                 value={topping}
                 checked={malzemeler.includes(topping)}
                 onChange={handleMalzemelerChange}
-                name="malzemeler"
+                data-cy="malzeme-input"
               />
               <label htmlFor={topping}>{topping}</label>
             </div>
@@ -183,26 +334,38 @@ const MalzemeCard = ({ malzemeler, handleMalzemelerChange }) => {
   );
 };
 
-const NoteCard = ({ notlar, handleNotlarChange }) => (
-  <div className="note-card">
-    <h4>Özel Notlar</h4>
-    <input
-      type="text"
-      name="notlar"
-      value={notlar}
-      onChange={handleNotlarChange}
-      placeholder="Özel isteklerinizi buraya yazınız"
-    />
-  </div>
-);
+const NoteCard = ({ notlar, handleNotlarChange }) => {
+  return (
+    <div className="siparis-notu">
+      <h4>Sipariş Notu</h4>
+      <textarea
+        color="#5F5F5F"
+        rows="2"
+        cols="50"
+        value={notlar}
+        placeholder="Siparişine eklemek istediğin bir not var mı?"
+        onChange={handleNotlarChange}
+      />
+    </div>
+  );
+};
 
-const SiparisToplami = ({ malzemeler, totalMalzemePrice, productCount }) => (
-  <div>
-    <h5 style={{ marginLeft: "50px", marginBottom: "-18px", fontSize: "18px" }}>Sipariş Toplamı:</h5>
-    <p style={{ fontSize: "18px", marginLeft: "50px", fontWeight: "bold" }}>Pizza Sayısı: {productCount} x 85.5 ₺</p>
-    <p style={{ fontSize: "18px", marginLeft: "50px", fontWeight: "bold" }}>Malzeme Sayısı: {malzemeler.length} x 5 ₺</p>
-    <p style={{ fontSize: "20px", marginLeft: "50px", fontWeight: "bold" }}>Toplam: {totalMalzemePrice + 85.5 * productCount} ₺</p>
-  </div>
-);
+const SiparisToplami = ({ malzemeler, totalMalzemePrice, productCount }) => {
+  const totalPrice = totalMalzemePrice + productCount * 85.5;
 
-export default Order;
+  return (
+    <div className="siparis-toplami">
+      <h4>Sipariş Toplamı</h4>
+      <p>
+        Seçimler:
+        <span malzemeler={malzemeler}>{totalMalzemePrice}₺</span>
+      </p>
+      <p className="toplam">
+        Toplam:
+        <span>{totalPrice}₺</span>
+      </p>
+    </div>
+  );
+};
+
+export default Order; 

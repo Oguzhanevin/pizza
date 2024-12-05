@@ -12,22 +12,19 @@ body {
 }
 
 .logoImage {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+  display: block;
   width: 1500px;
   height: 50px;
+  margin: 0 auto;
 }
 
 .header p {
   color: white;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.1rem;
+  text-align: center;
 }
 
 .order-page {
-  margin-left: 100px;
+  margin: 100px auto;
   text-align: center;
   width: 500px;
   line-height: 1.9rem;
@@ -43,20 +40,21 @@ body {
   margin-top: 20px;
 }
 
+form {
+  margin-top: 150px;
+  width: 100%;
+  text-align: left;
+  margin-left: 60%;
+}
+
 input.isim {
   font-size: 0.9rem;
   width: 50%;
 }
 
-p, h4 {
+p,
+h4 {
   text-align: left;
-}
-
-form {
-  margin-top: 150px;
-  text-align: left;
-  width: 100%;
-  margin-left: 60%;
 }
 
 .btn {
@@ -73,9 +71,8 @@ form {
 
 .btn:disabled,
 .btn.disabled {
-  background-color: #e0e0e0;
-  color: #bdbdbd;
-  cursor: not-allowed;
+  background-color: #fdc913;
+  color: black;
 }
 
 .boyut-card,
@@ -95,7 +92,7 @@ form {
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 2rem;
-  margin-left: 0;
+  margin-left: -60%;
 }
 
 .topping-item {
@@ -123,15 +120,15 @@ form {
 .counter {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 180px;
 }
 
 .control__btn {
-  display: flex;
-  align-items: center;
-  border: 1px solid #5f5f5f;
-  font-size: 20px;
   padding: 10px 20px;
   background-color: transparent;
+  border: 1px solid #5f5f5f;
+  font-size: 20px;
   color: rgb(16, 0, 54);
   border-radius: 8px;
   cursor: pointer;
@@ -155,7 +152,6 @@ form {
   display: flex;
   justify-content: center;
   column-gap: 20px;
-  border: 1px solid #5f5f5f;
   padding: 10px;
   border-radius: 4px;
 }
