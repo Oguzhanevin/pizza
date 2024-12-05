@@ -1,0 +1,60 @@
+.home-image {
+    position: relative;
+  }
+  
+  .firsat {
+    color: #fdc913;
+    margin-top: 30px;
+    margin-bottom: -1rem;
+    text-align: center;
+    font-size: 25px;
+    font-family: "Satisfy", sans-serif;
+  }
+  
+  .fullscreen-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+  }
+  
+  .overlay h1 {
+    width: 100%;
+    font-size: 50px;
+    font-weight: lighter;
+    margin-top: 3%;
+  }
+  
+  .overlay button {
+    padding: 8px 40px;
+    font-size: 1em;
+    background-color: #fdc913;
+    color: black;
+    border: none;
+    border-radius: 30px;
+  }
+  
+  .overlay button a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  span {
+    display: inline-block;
+    margin-right: 60px;
+  }
+  
+  .card-p {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  
