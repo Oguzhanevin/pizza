@@ -1,0 +1,112 @@
+.full-height {
+    padding: 0;
+    max-width: 100%;
+  }
+  
+  .content {
+    padding: 0 4rem 0 0;
+  }
+  
+  .left-blank {
+    padding: 0;
+  }
+  
+  .order {
+    width: 100%;
+    background-color: #fdc913;
+  }
+  
+  .total-calc {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-color: #acacac;
+    padding: 30px;
+  }
+  
+  .form-subtitle {
+    font-size: 1.3em;
+    font-weight: 600;
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .checkbox-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  
+  .materials-note {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .checkbox-container label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .size-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .option-label {
+    margin: 8px 0;
+  }
+  
+  #radio-button {
+    margin-right: 10px;
+  }
+  
+  .select-dough {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+  }
+  
+  .dough-selector {
+    margin: 10px 0;
+  }
+  
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    height: 3.5rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: #acacac;
+  }
+  
+  .calcname-calc {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+  }
+  
+  .all-totals {
+    color: #ce2829;
+    font-weight: bold;
+  }
+  
+  .check-out {
+    margin-bottom: 10vh;
+  }
+  
+  .order {
+    width: 100%;
+    background-color: #fdc913;
+  }
+  

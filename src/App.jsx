@@ -1,25 +1,28 @@
-import reactLogo from './assets/react.svg'
 import './App.css'
-import Header from './components/header'
-import HomePage from './components/homepage'
-import { Route, Routes } from 'react-router-dom'; // Switch yerine Routes kullanılıyor
-import Form from './components/form'
-import OnayPage from './components/onaypage'
-import { useState } from 'react'
+import Home from './pages/home/Home.jsx'
+import Order from './pages/order/Order.jsx'
+import { BrowserRouter as Switch, Route} from 'react-router-dom'
+import Success from './pages/success/Success.jsx'
 
 function App() {
-  const [mevcutSipariş, setMevcutSipariş] = useState(null);
 
   return (
     <>
-      <Header />
-      <Routes> {/* Switch yerine Routes kullanıyoruz */}
-        <Route path='/' element={<HomePage />} /> {/* exact kaldırıldı, element kullanıldı */}
-        <Route path='/Form' element={<Form setMevcutSipariş={setMevcutSipariş} />} />
-        <Route path='/Onay' element={<OnayPage mevcutSipariş={mevcutSipariş} />} />
-      </Routes>
-    </>
-  )
-}
 
-export default App;
+  <Switch>
+    <Route path='/order'>
+      <Order />
+    </Route>
+    <Route path='/' exact>
+      <Home />
+    </Route>
+    <Route path='/siparisalindi' >
+      <Success />
+    </Route>
+  </Switch>
+  
+</>
+  )
+};
+
+export default App

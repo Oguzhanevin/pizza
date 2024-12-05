@@ -1,0 +1,26 @@
+.quantity-div {
+    display: flex;
+}
+
+button.left-button, button.right-button {
+    width: 3rem;
+    aspect-ratio: 1;
+    background-color: #FDC913;
+}
+
+button.left-button {
+    border-radius: 0.3rem 0 0 0.3rem; /* border-top-left-radius ve border-bottom-left-radius birleşti */
+}
+
+button.right-button {
+    border-radius: 0 0.3rem 0.3rem 0; /* border-top-right-radius ve border-bottom-right-radius birleşti */
+}
+
+.current-quantity {
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #acacac;
+    border-bottom: 1px solid #acacac;
+}
