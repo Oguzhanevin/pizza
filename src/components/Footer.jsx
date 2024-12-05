@@ -1,15 +1,16 @@
 import React from "react";
+import "./Footer.css";
+import footerlogo from "../assets/insta/logo-footer.svg";
+import icon1 from "../assets/icons/icon-1.png";
+import icon2 from "../assets/icons/icon-2.png";
+import icon3 from "../assets/icons/icon-3.png";
 import styled from "styled-components";
-import footerlogo from "../Assets/Iteration-2-aseets/footer/logo-footer.svg";
-import icon1 from "../Assets/Iteration-2-aseets/footer/icons/icon-1.png";
-import icon2 from "../Assets/Iteration-2-aseets/footer/icons/icon-2.png";
-import icon3 from "../Assets/Iteration-2-aseets/footer/icons/icon-3.png";
-import Instagram1 from "../Assets/Iteration-2-aseets/footer/insta/li-0.png";
-import Instagram2 from "../Assets/Iteration-2-aseets/footer/insta/li-1.png";
-import Instagram3 from "../Assets/Iteration-2-aseets/footer/insta/li-2.png";
-import Instagram4 from "../Assets/Iteration-2-aseets/footer/insta/li-3.png";
-import Instagram5 from "../Assets/Iteration-2-aseets/footer/insta/li-4.png";
-import Instagram6 from "../Assets/Iteration-2-aseets/footer/insta/li-5.png";
+import Instagram1 from "../assets/insta/li-0.png";
+import Instagram2 from "../assets/insta/li-1.png";
+import Instagram3 from "../assets/insta/li-2.png";
+import Instagram4 from "../assets/insta/li-3.png";
+import Instagram5 from "../assets/insta/li-4.png";
+import Instagram6 from "../assets/insta/li-5.png";
 
 const FooterLeft = styled.div`
   display: inline-flex;

@@ -1,27 +1,212 @@
 import React from "react";
 import styled from "styled-components";
 import "./Home.css";
-import home from "../Assets/Iteration-1-assets/home-banner.png";
-import logo from "../Assets/Iteration-1-assets/logo.svg";
+import home from "../assets/home-banner.png";
+import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
-import kore from "../Assets/Iteration-2-aseets/icons/1.svg";
-import pizza from "../Assets/Iteration-2-aseets/icons/2.svg";
-import burger from "../Assets/Iteration-2-aseets/icons/3.svg";
-import kızartmalar from "../Assets/Iteration-2-aseets/icons/4.svg";
-import fastfood from "../Assets/Iteration-2-aseets/icons/5.svg";
-import gazlı from "../Assets/Iteration-2-aseets/icons/6.svg";
-import food1 from "../Assets/Iteration-2-aseets/pictures/food-1.png";
-import food2 from "../Assets/Iteration-2-aseets/pictures/food-2.png";
-import food3 from "../Assets/Iteration-2-aseets/pictures/food-3.png";
-import Kart1 from "../Assets/Iteration-2-aseets/cta/kart-1.png";
-import Kart2 from "../Assets/Iteration-2-aseets/cta/kart-2.png";
-import Kart3 from "../Assets/Iteration-2-aseets/cta/kart-3.png";
+import kore from "../assets/icons/1.svg";
+import pizza from "../assets/icons/2.svg";
+import burger from "../assets/icons/3.svg";
+import kızartmalar from "../assets/icons/4.svg";
+import fastfood from "../assets/icons/5.svg";
+import gazlı from "../assets/icons/6.svg";
+import food1 from "../assets/pictures/food-1.png";
+import food2 from "../assets/pictures/food-2.png";
+import food3 from "../assets/pictures/food-3.png";
+import { Card, CardBody } from "reactstrap";
+
+import Kart1 from "../assets/cta/kart-1.png";
+import Kart2 from "../assets/cta/kart-2.png";
+import Kart3 from "../assets/cta/kart-3.png";
 
 const AltBanner = styled.div`
   background-color: #faf7f2;
 `;
 
-// Diğer stil bileşenleri...
+const StyledNav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  padding: 0 120px;
+  margin-top: 35px;
+  margin-bottom: 10px;
+`;
+
+const StyledNavItem = styled.div`
+  color: #292929;
+  font-weight: bold;
+  gap: 30px;
+  img {
+    margin-right: 5px;
+  }
+`;
+const PrefferedMenu = styled.p`
+  color: #ce2829;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 25px;
+  font-family: "Satisfy", sans-serif !important;
+`;
+const Lezzetler = styled.h2`
+color: #292929
+margin-top: 30px;
+font-weight: bold;
+`;
+
+const Button = styled.button`
+  background-color: white;
+  padding: 5px 20px;
+  border-radius: 30px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #292929;
+    border-color: #292929;
+    color: white;
+  }
+
+  img {
+    margin-right: 10px;
+  }
+`;
+
+const StyledCardContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+`;
+
+const StyledCardTitle = styled.p`
+  text-align: left;
+  font-weight: bold;
+  color: #292929;
+`;
+
+const SiparisButton = styled.button`
+  background-color: #faf7f2;
+  padding: 8px 40px;
+  font-size: 0.8em;
+  border: none;
+  border-radius: 30px;
+  a {
+    color: #ce2829;
+    text-decoration: none;
+    -webkit-text-stroke: medium;
+  }
+`;
+
+const SiparisButton1 = styled.button`
+  background-color: #faf7f2;
+  padding: 3px 30px;
+  font-size: 0.8em;
+  border: none;
+  border-radius: 30px;
+  margin-left: -65px;
+  a {
+    color: #ce2829;
+    text-decoration: none;
+    -webkit-text-stroke: medium;
+  }
+`;
+
+const SiparisButton2 = styled.button`
+  background-color: #faf7f2;
+  padding: 3px 30px;
+  font-size: 0.8em;
+  border: none;
+  border-radius: 30px;
+  margin-left: -65px;
+  margin-bottom: 38px;
+  a {
+    color: #ce2829;
+    text-decoration: none;
+    -webkit-text-stroke: medium;
+  }
+`;
+
+const Banner = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-right: 2%;
+  margin-left: 20%;
+  img {
+    width: 500px;
+    height: 400px;
+    border-radius: 8px;
+  }
+`;
+
+const Banner2 = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  margin-top: 50px;
+  margin-left: auto;
+
+  img {
+    margin-bottom: 20px;
+    width: 450px;
+    height: 190px;
+    border-radius: 8px;
+  }
+`;
+
+const BannerImage1 = styled.div`
+  margin-right: 60px;
+  position: absolute;
+  margin-right: 16%;
+  margin-top: 4%;
+  text-align: left;
+  color: #faf7f2;
+  text-weight: bold;
+  p {
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 40px;
+    font-family: "Quattrocento";
+  }
+`;
+
+const BannerImage2 = styled.div`
+  margin-left: 60px;
+  position: absolute;
+  margin-top: 18%;
+  margin-right: 20px;
+
+  p {
+    color: #black;
+    font-size: 20px;
+    width: 154px;
+    height: 58px;
+    margin-left: -25px;
+    margin-top: -230%;
+    font-weight: bold;
+  }
+`;
+
+const BannerImage3 = styled.div`
+  margin-left: 60px;
+  position: absolute;
+  margin-top: 18%;
+  margin-right: 20px;
+  p {
+    color: #faf7f2;
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+    margin-left: -25px;
+    margin-bottom: 45%;
+    font-weight: bold;
+  }
+
+  span {
+    color: #ce2829;
+    font-weight: bold;
+  }
+`;
 
 export default function Home() {
   return (
@@ -50,14 +235,14 @@ export default function Home() {
           <img alt="Burger" src={burger} /> Burger
         </StyledNavItem>
         <StyledNavItem>
-          <img alt="Kızartmalar" src={kızartmalar} /> Kızartmalar
+          <img alt="Burger" src={kızartmalar} /> Kızartmalar
         </StyledNavItem>
         <StyledNavItem>
-          <img alt="Fast Food" src={fastfood} />
+          <img alt="Burger" src={fastfood} />
           Fast food
         </StyledNavItem>
         <StyledNavItem>
-          <img alt="Gazlı İçecek" src={gazlı} />
+          <img alt="Burger" src={gazlı} />
           Gazlı İçecek
         </StyledNavItem>
       </StyledNav>
@@ -91,7 +276,7 @@ export default function Home() {
               <Link to="/order">SİPARİŞ VER</Link>
             </SiparisButton2>
           </BannerImage3>
-        </Banner2>
+        </Banner2>{" "}
       </div>
 
       <AltBanner>
@@ -112,15 +297,15 @@ export default function Home() {
             Burger
           </Button>
           <Button>
-            <img alt="Kızartmalar" src={kızartmalar} />
+            <img alt="Burger" src={kızartmalar} />
             French fries
           </Button>
           <Button>
-            <img alt="Fast Food" src={fastfood} />
+            <img alt="Burger" src={fastfood} />
             Fast food
           </Button>
           <Button>
-            <img alt="Gazlı İçecek" src={gazlı} />
+            <img alt="Burger" src={gazlı} />
             Soft drinks
           </Button>
         </StyledNav>
